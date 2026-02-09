@@ -1,146 +1,877 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hunter System</title>
-
 <link rel="manifest" href="manifest.webmanifest">
 
 <style>
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0b0f14;
-  color: #e5e7eb;
-}
-
-header {
-  padding: 16px;
-  text-align: center;
-  background: linear-gradient(135deg,#111827,#020617);
-  border-bottom: 1px solid #1f2937;
-}
-
-h1 {
-  margin: 0;
-  font-size: 1.4rem;
-}
-
-main {
-  padding: 16px;
-}
-
-.card {
-  background: #020617;
-  border: 1px solid #1f2937;
-  border-radius: 12px;
-  padding: 14px;
-  margin-bottom: 12px;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 8px;
-  border-radius: 10px;
-  border: none;
-  background: #2563eb;
-  color: white;
-  font-weight: 600;
-}
-
-.stat {
-  display: flex;
-  justify-content: space-between;
-  margin: 6px 0;
-}
+  :root{
+    --bg:#0b0f14;
+    --panel:#020617;
+    --panel2:#071024;
+    --stroke:#1f2937;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --blue:#2563eb;
+    --green:#16a34a;
+    --red:#ef4444;
+    --gold:#f59e0b;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+  header{
+    padding:16px 14px 12px;
+    text-align:center;
+    background: radial-gradient(1200px 400px at 50% 0%, #0b1b3a 0%, #020617 55%, #000 100%);
+    border-bottom:1px solid var(--stroke);
+  }
+  header h1{margin:0;font-size:1.35rem;letter-spacing:.5px}
+  header .sub{margin-top:6px;color:var(--muted);font-size:.95rem}
+  main{padding:14px;max-width:920px;margin:0 auto}
+  .grid{display:grid;gap:12px}
+  @media(min-width:900px){ .grid{grid-template-columns:1.2fr .8fr} }
+  .card{
+    background:linear-gradient(180deg,var(--panel),#02040c);
+    border:1px solid var(--stroke);
+    border-radius:var(--radius);
+    padding:14px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
+  }
+  .card h2{margin:0 0 10px;font-size:1.05rem}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .pill{
+    border:1px solid var(--stroke);
+    background:rgba(255,255,255,.03);
+    padding:6px 10px;border-radius:999px;
+    color:var(--muted);font-size:.9rem
+  }
+  .big{
+    font-size:1.1rem;font-weight:700
+  }
+  .muted{color:var(--muted)}
+  button{
+    appearance:none;border:none;border-radius:12px;
+    padding:12px 12px;font-weight:700;
+    background:var(--blue);color:white;cursor:pointer;
+  }
+  button:disabled{opacity:.55;cursor:not-allowed}
+  .btn2{background:#111827;border:1px solid var(--stroke);color:var(--text)}
+  .btnDanger{background:#7f1d1d}
+  .btnGood{background:var(--green)}
+  .btnGold{background:var(--gold);color:#111827}
+  .split{display:flex;gap:10px}
+  .split > *{flex:1}
+  input, select, textarea{
+    width:100%;
+    padding:10px 10px;
+    border-radius:12px;
+    border:1px solid var(--stroke);
+    background:#0a1224;color:var(--text);
+    outline:none;
+  }
+  textarea{min-height:70px;resize:vertical}
+  .stats{display:grid;gap:8px}
+  .statRow{
+    display:grid;grid-template-columns:1.2fr 2fr .5fr;
+    gap:10px;align-items:center
+  }
+  .statRow label{color:var(--text)}
+  .statRow .val{justify-self:end;color:var(--muted)}
+  input[type="range"]{width:100%}
+  .bar{
+    height:10px;border-radius:999px;
+    background:rgba(255,255,255,.08);
+    border:1px solid var(--stroke);
+    overflow:hidden;
+  }
+  .bar > div{height:100%;background:linear-gradient(90deg,#2563eb,#22c55e)}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+  .tab{padding:10px 12px;border-radius:999px;border:1px solid var(--stroke);background:rgba(255,255,255,.03);color:var(--text);cursor:pointer}
+  .tab.active{background:rgba(37,99,235,.25);border-color:rgba(37,99,235,.65)}
+  .quest{
+    display:flex;gap:10px;align-items:flex-start;
+    padding:10px;border-radius:12px;border:1px solid var(--stroke);
+    background:rgba(255,255,255,.02);
+    margin-bottom:8px;
+  }
+  .quest input{width:auto}
+  .quest .meta{margin-left:auto;color:var(--muted);font-size:.9rem;white-space:nowrap}
+  .hr{height:1px;background:var(--stroke);margin:12px 0}
+  .tiny{font-size:.85rem;color:var(--muted)}
 </style>
 </head>
 
 <body>
-
 <header>
   <h1>Hunter System</h1>
-  <div id="quote"></div>
+  <div class="sub" id="sysMsg"></div>
 </header>
 
 <main>
-  <div class="card">
-    <h3>Hunter Level</h3>
-    <div id="level">E-Rank</div>
-    <div id="xp">XP: 0</div>
+  <div class="tabs">
+    <div class="tab active" data-view="dashboard">Dashboard</div>
+    <div class="tab" data-view="quests">Quests</div>
+    <div class="tab" data-view="checkin">Daily Check-in</div>
+    <div class="tab" data-view="history">History</div>
+    <div class="tab" data-view="settings">Settings</div>
   </div>
 
-  <div class="card">
-    <h3>Stats</h3>
-    <div class="stat"><span>Strength</span><span id="str">0</span></div>
-    <div class="stat"><span>Discipline</span><span id="disc">0</span></div>
-    <div class="stat"><span>Mindset</span><span id="mind">0</span></div>
-    <div class="stat"><span>Sleep</span><span id="sleep">0</span></div>
+  <div id="view-dashboard">
+    <div class="grid">
+      <div class="card">
+        <h2>Hunter Level</h2>
+        <div class="row">
+          <div class="pill"><span class="muted">Rank</span> <span class="big" id="rank">E</span></div>
+          <div class="pill"><span class="muted">Power</span> <span class="big" id="power">0</span>/100</div>
+          <div class="pill"><span class="muted">XP</span> <span class="big" id="xp">0</span></div>
+          <div class="pill"><span class="muted">Streak</span> <span class="big" id="streak">0</span> days</div>
+        </div>
+        <div style="margin-top:10px">
+          <div class="tiny">Power is your weighted “all-life” score. Rank is based on Power (Solo-style E → S).</div>
+          <div class="bar" style="margin-top:8px"><div id="powerBar" style="width:0%"></div></div>
+        </div>
+        <div class="hr"></div>
+        <div class="row">
+          <button id="btnDailySave" class="btnGood">Daily Save</button>
+          <button id="btnQuickQuest" class="btn2">Generate Today’s Quests</button>
+        </div>
+        <div class="tiny" id="saveStatus" style="margin-top:8px"></div>
+      </div>
+
+      <div class="card">
+        <h2>Main Quest</h2>
+        <div class="pill" id="mqTitle">None set</div>
+        <div class="tiny" id="mqDetail" style="margin-top:8px"></div>
+        <div class="hr"></div>
+        <div class="row">
+          <button class="btn2" onclick="goView('quests')">Open Quests</button>
+          <button class="btn2" onclick="goView('settings')">Edit Main Quest</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>Character Sheet</h2>
+      <div class="stats" id="statsRead"></div>
+      <div class="tiny" style="margin-top:10px">
+        Tip: Screen Time is reverse-scored (lower is better).
+      </div>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>Daily Save</h3>
-    <button onclick="dailySave()">Save Today</button>
-    <div id="status"></div>
+  <div id="view-quests" style="display:none">
+    <div class="grid">
+      <div class="card">
+        <h2>Daily Quests <span class="tiny">(auto-generated)</span></h2>
+        <div class="row" style="margin-bottom:10px">
+          <button id="btnReroll" class="btnGold">Reroll (1/day)</button>
+          <div class="pill">Rerolls left today: <span class="big" id="rerollsLeft">1</span></div>
+        </div>
+        <div id="dailyList"></div>
+      </div>
+
+      <div class="card">
+        <h2>Weekly Quests <span class="tiny">(reset weekly)</span></h2>
+        <div id="weeklyList"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h2>Main Quest Slot (only one)</h2>
+      <div class="tiny">Daily + weekly quests will “lean” toward your Main Quest without feeling like work.</div>
+      <div class="hr"></div>
+      <div class="row">
+        <div class="pill">Current: <span class="big" id="mqTitle2">None</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-checkin" style="display:none">
+    <div class="card">
+      <h2>Daily Check-in</h2>
+      <div class="tiny">Rate today (0–10). This affects Power, XP rewards, and long-term progress.</div>
+      <div class="hr"></div>
+      <div class="stats" id="checkinStats"></div>
+      <div class="hr"></div>
+      <div class="row">
+        <button id="btnSubmitCheckin" class="btnGood">Submit Check-in</button>
+        <button class="btn2" id="btnAutoFill">Auto-fill from last</button>
+      </div>
+      <div class="tiny" id="checkinStatus" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <div id="view-history" style="display:none">
+    <div class="card">
+      <h2>History</h2>
+      <div class="tiny">Last 14 days (Power + Rank). More coming later.</div>
+      <div class="hr"></div>
+      <div id="historyList"></div>
+    </div>
+  </div>
+
+  <div id="view-settings" style="display:none">
+    <div class="card">
+      <h2>Settings</h2>
+      <div class="split">
+        <div>
+          <label class="tiny">System Message Mode</label>
+          <select id="msgMode">
+            <option value="mix">Mix (quote + verse)</option>
+            <option value="quote">Motivational only</option>
+            <option value="verse">Bible verses only</option>
+          </select>
+        </div>
+        <div>
+          <label class="tiny">Micro Quests per day</label>
+          <select id="microPerDay">
+            <option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option>
+          </select>
+        </div>
+        <div>
+          <label class="tiny">Weekly Quests</label>
+          <select id="weeklyPerWeek">
+            <option>2</option><option selected>3</option><option>4</option><option>5</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <h2>Main Quest</h2>
+      <div class="tiny">Set to anything: learn Italian, snowboard, get stronger, study more—whatever your current mission is.</div>
+      <div class="hr"></div>
+      <div class="split">
+        <div>
+          <label class="tiny">Main Quest Title</label>
+          <input id="mqInput" placeholder="e.g., Learn Italian / Snowboard / Get Leaner / Study 2 hrs/day" />
+        </div>
+        <div>
+          <label class="tiny">Main Quest Focus</label>
+          <select id="mqFocus">
+            <option value="Balanced" selected>Balanced</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Strength">Strength</option>
+            <option value="Study">Study</option>
+            <option value="Mindset">Mindset</option>
+            <option value="Recovery">Recovery</option>
+            <option value="Skill">Skill</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:10px">
+        <button id="btnSaveSettings" class="btnGood">Save Settings</button>
+        <button id="btnResetAll" class="btnDanger">Reset Everything</button>
+      </div>
+
+      <div class="tiny" style="margin-top:10px">
+        Reset wipes local data on this device only.
+      </div>
+    </div>
   </div>
 </main>
 
 <script>
-const state = JSON.parse(localStorage.getItem("hunter")) || {
-  xp: 0,
-  stats: { str:0, disc:0, mind:0, sleep:0 },
-  lastSave: ""
-};
-
-function updateUI(){
-  document.getElementById("xp").innerText = "XP: " + state.xp;
-  document.getElementById("str").innerText = state.stats.str;
-  document.getElementById("disc").innerText = state.stats.disc;
-  document.getElementById("mind").innerText = state.stats.mind;
-  document.getElementById("sleep").innerText = state.stats.sleep;
-
-  let rank = "E-Rank";
-  if(state.xp >= 500) rank="D-Rank";
-  if(state.xp >= 1500) rank="C-Rank";
-  if(state.xp >= 3000) rank="B-Rank";
-  if(state.xp >= 6000) rank="A-Rank";
-  if(state.xp >= 10000) rank="S-Rank";
-
-  document.getElementById("level").innerText = rank;
-}
-
-function dailySave(){
-  const today = new Date().toDateString();
-  if(state.lastSave === today){
-    document.getElementById("status").innerText = "Already saved today.";
-    return;
-  }
-  state.lastSave = today;
-  state.xp += 50;
-  state.stats.disc += 1;
-  localStorage.setItem("hunter", JSON.stringify(state));
-  document.getElementById("status").innerText = "Daily save complete. +50 XP";
-  updateUI();
-}
-
-const quotes = [
-  "Arise.",
-  "Discipline beats motivation.",
-  "You are building something invisible.",
-  "God gives strength to those who walk daily."
+/** -----------------------------
+ *  DATA MODEL
+ * ------------------------------*/
+const STAT_KEYS = [
+  { key:"strength",   label:"Strength",   weight:1.25 },
+  { key:"endurance",  label:"Endurance",  weight:1.15 },
+  { key:"discipline", label:"Discipline", weight:1.30 },
+  { key:"mindset",    label:"Mindset",    weight:1.05 },
+  { key:"sleep",      label:"Sleep",      weight:1.10 },
+  { key:"nutrition",  label:"Nutrition",  weight:1.10 },
+  { key:"study",      label:"Study Time", weight:1.10 },
+  { key:"skill",      label:"Skill",      weight:1.00 },
+  { key:"flexibility",label:"Flexibility",weight:0.85 },
+  // Screen time is reverse-scored (lower is better), so weight is moderate
+  { key:"screen",     label:"Screen Time",weight:0.95, reverse:true },
 ];
 
-document.getElementById("quote").innerText =
-  quotes[Math.floor(Math.random()*quotes.length)];
+function todayKey(){
+  const d = new Date();
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+function weekKey(){
+  // ISO-ish week id
+  const d = new Date();
+  const tmp = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = tmp.getUTCDay() || 7;
+  tmp.setUTCDate(tmp.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(tmp.getUTCFullYear(),0,1));
+  const weekNo = Math.ceil((((tmp - yearStart) / 86400000) + 1) / 7);
+  return tmp.getUTCFullYear()+"-W"+String(weekNo).padStart(2,"0");
+}
 
-updateUI();
+const DEFAULT_STATE = {
+  xp: 0,
+  streak: 0,
+  lastSave: "",
+  lastCheckin: "",
+  rerollDate: "",
+  rerollsLeft: 1,
+  settings: {
+    msgMode: "mix",
+    microPerDay: 5,
+    weeklyPerWeek: 3,
+    mainQuest: { title:"", focus:"Balanced" }
+  },
+  // latest daily ratings 0-10
+  current: Object.fromEntries(STAT_KEYS.map(s => [s.key, 0])),
+  // history: {date, power, rank, snapshot}
+  history: [],
+  // quests
+  quests: {
+    dailyDate: "",
+    daily: [],
+    weeklyWeek: "",
+    weekly: []
+  }
+};
 
+function loadState(){
+  try{
+    const raw = localStorage.getItem("hunterSystemV2");
+    if(!raw) return structuredClone(DEFAULT_STATE);
+    const s = JSON.parse(raw);
+
+    // merge with defaults safely
+    const merged = structuredClone(DEFAULT_STATE);
+    Object.assign(merged, s);
+    merged.settings = Object.assign(structuredClone(DEFAULT_STATE.settings), s.settings || {});
+    merged.settings.mainQuest = Object.assign(structuredClone(DEFAULT_STATE.settings.mainQuest), (s.settings||{}).mainQuest || {});
+    merged.current = Object.assign(structuredClone(DEFAULT_STATE.current), s.current || {});
+    merged.quests = Object.assign(structuredClone(DEFAULT_STATE.quests), s.quests || {});
+    merged.history = Array.isArray(s.history) ? s.history : [];
+    return merged;
+  }catch{
+    return structuredClone(DEFAULT_STATE);
+  }
+}
+function saveState(){
+  localStorage.setItem("hunterSystemV2", JSON.stringify(state));
+}
+
+let state = loadState();
+
+/** -----------------------------
+ *  SYSTEM MESSAGE (QUOTE/VERSE)
+ * ------------------------------*/
+const QUOTES = [
+  "Discipline beats motivation.",
+  "Small wins stack into rank-ups.",
+  "You don’t rise to goals—you fall to systems.",
+  "Be consistent, not perfect.",
+  "One good day is easy. A streak is power."
+];
+const VERSES = [
+  "“Be strong and courageous… for the Lord your God will be with you.” — Joshua 1:9",
+  "“I can do all things through Christ who strengthens me.” — Philippians 4:13",
+  "“Let us not grow weary in doing good.” — Galatians 6:9",
+  "“Commit your work to the Lord, and your plans will be established.” — Proverbs 16:3"
+];
+function setSystemMessage(){
+  const mode = state.settings.msgMode || "mix";
+  let pool = QUOTES;
+  if(mode === "verse") pool = VERSES;
+  if(mode === "mix") pool = Math.random() < 0.5 ? QUOTES : VERSES;
+  document.getElementById("sysMsg").textContent = pool[Math.floor(Math.random()*pool.length)];
+}
+
+/** -----------------------------
+ *  POWER + RANK
+ * ------------------------------*/
+function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
+
+function computePower(snapshot){
+  // snapshot values are 0-10 ratings; screen time is reverse scored.
+  let wSum = 0, totalW = 0;
+  for(const s of STAT_KEYS){
+    let v = Number(snapshot[s.key] ?? 0);
+    v = clamp(v, 0, 10);
+    if(s.reverse){
+      // reverse: 0=best? we want lower screen time -> higher score.
+      // We'll interpret rating as: 0=none, 10=very high screen time.
+      // Convert to "goodness": 10 - rating
+      v = 10 - v;
+    }
+    wSum += v * s.weight;
+    totalW += 10 * s.weight;
+  }
+  const pct = totalW ? (wSum / totalW) : 0; // 0..1
+  return Math.round(pct * 100);
+}
+function powerToRank(power){
+  // Solo-ish thresholds; tuneable
+  if(power >= 90) return "S";
+  if(power >= 80) return "A";
+  if(power >= 70) return "B";
+  if(power >= 55) return "C";
+  if(power >= 40) return "D";
+  return "E";
+}
+
+/** -----------------------------
+ *  QUEST GENERATION
+ * ------------------------------*/
+function pickUnique(pool, count){
+  const copy = [...pool];
+  const out = [];
+  while(copy.length && out.length < count){
+    const i = Math.floor(Math.random()*copy.length);
+    out.push(copy.splice(i,1)[0]);
+  }
+  return out;
+}
+
+function dailyTemplates(mainTitle, focus){
+  const t = (s)=> s.replaceAll("{MQ}", mainTitle || "Main Quest");
+  const base = [
+    { text:"10-minute walk (no phone).", xp:25, stats:["endurance","mindset"] },
+    { text:"10 push-ups OR 10 squats (pick one).", xp:25, stats:["strength"] },
+    { text:"Drink water + eat one protein-based meal.", xp:30, stats:["nutrition"] },
+    { text:"Plan tomorrow in 3 bullet points.", xp:25, stats:["discipline","mindset"] },
+    { text:"No screens 30 min before sleep.", xp:30, stats:["sleep","screen"] },
+    { text:"10 minutes focused work/study (timer).", xp:30, stats:["study","discipline"] },
+    { text:"5 minutes mobility/stretching.", xp:20, stats:["flexibility"] },
+    { text:"Learn 1 tiny skill step (practice 10 min).", xp:30, stats:["skill","discipline"] },
+  ].map(q => ({...q, text:t(q.text)}));
+
+  const focusPools = {
+    Fitness: [
+      { text:"15 minutes cardio (easy pace).", xp:40, stats:["endurance"] },
+      { text:"Outdoor sunlight 10 min.", xp:20, stats:["mindset","sleep"] },
+      { text:"Protein goal today (hit it).", xp:35, stats:["nutrition"] },
+    ],
+    Strength: [
+      { text:"1 main lift OR bodyweight set ladder (10 min).", xp:45, stats:["strength","discipline"] },
+      { text:"Add 1 set to something you already do.", xp:35, stats:["strength"] },
+    ],
+    Study: [
+      { text:"25-minute study sprint (Pomodoro).", xp:50, stats:["study","discipline"] },
+      { text:"Make 5 flashcards / 5 key points.", xp:35, stats:["study","skill"] },
+    ],
+    Mindset: [
+      { text:"Journal 5 lines: win, lesson, next step.", xp:35, stats:["mindset","discipline"] },
+      { text:"Do the hardest task first (5–10 min).", xp:40, stats:["discipline","mindset"] },
+    ],
+    Recovery: [
+      { text:"In bed on time (set bedtime).", xp:45, stats:["sleep","discipline"] },
+      { text:"Stretch + breathe 6 minutes.", xp:25, stats:["flexibility","mindset"] },
+    ],
+    Skill: [
+      { text:"Practice {MQ} for 10 minutes.", xp:45, stats:["skill","discipline"] },
+      { text:"Watch 5 minutes of {MQ} tutorial then do 5 minutes practice.", xp:40, stats:["skill"] },
+    ],
+    Balanced: [
+      { text:"Complete any 2 micro quests today.", xp:35, stats:["discipline"] },
+      { text:"Clean your space for 5 minutes.", xp:25, stats:["mindset","discipline"] },
+    ]
+  };
+
+  const focusList = (focusPools[focus] || focusPools.Balanced).map(q => ({...q, text:t(q.text)}));
+  return base.concat(focusList);
+}
+
+function weeklyTemplates(mainTitle, focus){
+  const t = (s)=> s.replaceAll("{MQ}", mainTitle || "Main Quest");
+  const base = [
+    { text:"Hit 4 days of Daily Save + Check-in.", xp:150, stats:["discipline"] },
+    { text:"Average Sleep 7/10 or better (4+ days).", xp:140, stats:["sleep"] },
+    { text:"3 study sessions (25+ min).", xp:160, stats:["study","discipline"] },
+    { text:"2 workouts (any kind).", xp:160, stats:["strength","endurance"] },
+    { text:"Screen-time day under your normal (3+ days).", xp:140, stats:["screen","discipline"] },
+  ].map(q => ({...q, text:t(q.text)}));
+
+  const focusPools = {
+    Fitness: [
+      { text:"3 cardio sessions (15+ min).", xp:180, stats:["endurance"] },
+      { text:"Meal prep once or plan 3 meals.", xp:160, stats:["nutrition","discipline"] },
+    ],
+    Strength: [
+      { text:"2 strength sessions + track one PR attempt.", xp:200, stats:["strength"] },
+    ],
+    Study: [
+      { text:"5 total study blocks this week.", xp:220, stats:["study","discipline"] },
+    ],
+    Mindset: [
+      { text:"Journal 4 days this week.", xp:170, stats:["mindset"] },
+    ],
+    Recovery: [
+      { text:"No screens 30 min before bed (4 days).", xp:170, stats:["sleep","screen"] },
+    ],
+    Skill: [
+      { text:"Practice {MQ} on 4 separate days.", xp:220, stats:["skill","discipline"] },
+    ],
+    Balanced: [
+      { text:"Complete 70% of daily quests this week.", xp:220, stats:["discipline"] },
+    ]
+  };
+
+  const focusList = (focusPools[focus] || focusPools.Balanced).map(q => ({...q, text:t(q.text)}));
+  return base.concat(focusList);
+}
+
+function ensureQuests(){
+  const t = todayKey();
+  const w = weekKey();
+
+  // reset reroll daily
+  if(state.rerollDate !== t){
+    state.rerollDate = t;
+    state.rerollsLeft = 1;
+  }
+
+  const mq = state.settings.mainQuest || {title:"", focus:"Balanced"};
+  const mainTitle = (mq.title || "").trim();
+  const focus = mq.focus || "Balanced";
+
+  // daily
+  if(state.quests.dailyDate !== t || !Array.isArray(state.quests.daily) || state.quests.daily.length === 0){
+    const pool = dailyTemplates(mainTitle, focus);
+    const picked = pickUnique(pool, Number(state.settings.microPerDay || 5));
+    state.quests.dailyDate = t;
+    state.quests.daily = picked.map(q => ({...q, done:false, id: cryptoId()}));
+  }
+
+  // weekly
+  if(state.quests.weeklyWeek !== w || !Array.isArray(state.quests.weekly) || state.quests.weekly.length === 0){
+    const pool = weeklyTemplates(mainTitle, focus);
+    const picked = pickUnique(pool, Number(state.settings.weeklyPerWeek || 3));
+    state.quests.weeklyWeek = w;
+    state.quests.weekly = picked.map(q => ({...q, done:false, id: cryptoId()}));
+  }
+
+  saveState();
+}
+
+function cryptoId(){
+  return Math.random().toString(16).slice(2) + Date.now().toString(16);
+}
+
+/** -----------------------------
+ *  XP + STATS REWARDS
+ * ------------------------------*/
+function addXP(amount){
+  state.xp += Math.max(0, Math.round(amount));
+}
+function bumpStats(keys){
+  for(const k of keys || []){
+    if(!(k in state.current)) continue;
+    state.current[k] = clamp(Number(state.current[k]||0) + 0.2, 0, 10); // tiny permanent bump
+  }
+}
+
+/** -----------------------------
+ *  UI RENDER
+ * ------------------------------*/
+function render(){
+  setSystemMessage();
+
+  // compute power + rank from current ratings
+  const power = computePower(state.current);
+  const rank = powerToRank(power);
+
+  document.getElementById("power").textContent = power;
+  document.getElementById("rank").textContent = rank;
+  document.getElementById("xp").textContent = state.xp;
+  document.getElementById("streak").textContent = state.streak;
+  document.getElementById("powerBar").style.width = power + "%";
+
+  // main quest labels
+  const mq = state.settings.mainQuest || {title:"", focus:"Balanced"};
+  const title = (mq.title || "").trim();
+  document.getElementById("mqTitle").textContent = title ? title : "None set";
+  document.getElementById("mqTitle2").textContent = title ? title : "None";
+  document.getElementById("mqDetail").textContent = title
+    ? `Focus: ${mq.focus || "Balanced"} • Daily: ${state.settings.microPerDay} • Weekly: ${state.settings.weeklyPerWeek}`
+    : "Set a Main Quest anytime. Quests will adapt.";
+
+  // stats readout
+  const statsRead = document.getElementById("statsRead");
+  statsRead.innerHTML = "";
+  for(const s of STAT_KEYS){
+    const v = Number(state.current[s.key] ?? 0);
+    const label = s.label + (s.reverse ? " (lower is better)" : "");
+    const row = document.createElement("div");
+    row.className = "statRow";
+    row.innerHTML = `
+      <label>${label}</label>
+      <input type="range" min="0" max="10" step="1" value="${v}" disabled>
+      <div class="val">${v}</div>
+    `;
+    statsRead.appendChild(row);
+  }
+
+  // daily save button state
+  const t = todayKey();
+  const canSave = state.lastSave !== t;
+  const btn = document.getElementById("btnDailySave");
+  btn.disabled = !canSave;
+  document.getElementById("saveStatus").textContent = canSave
+    ? "Save available. (Once per day)"
+    : "Saved today. Come back tomorrow for your next daily save.";
+
+  // rerolls
+  document.getElementById("rerollsLeft").textContent = String(state.rerollsLeft);
+
+  // render quests
+  renderQuests();
+
+  // render checkin
+  renderCheckin();
+
+  // history
+  renderHistory();
+
+  // settings inputs
+  document.getElementById("msgMode").value = state.settings.msgMode || "mix";
+  document.getElementById("microPerDay").value = String(state.settings.microPerDay || 5);
+  document.getElementById("weeklyPerWeek").value = String(state.settings.weeklyPerWeek || 3);
+  document.getElementById("mqInput").value = (state.settings.mainQuest?.title || "");
+  document.getElementById("mqFocus").value = (state.settings.mainQuest?.focus || "Balanced");
+}
+
+function renderQuests(){
+  ensureQuests();
+  const dailyList = document.getElementById("dailyList");
+  const weeklyList = document.getElementById("weeklyList");
+  dailyList.innerHTML = "";
+  weeklyList.innerHTML = "";
+
+  for(const q of state.quests.daily){
+    const el = document.createElement("div");
+    el.className = "quest";
+    el.innerHTML = `
+      <input type="checkbox" ${q.done ? "checked":""} aria-label="done">
+      <div>
+        <div>${escapeHtml(q.text)}</div>
+        <div class="tiny">Rewards: +${q.xp} XP • ${q.stats?.join(", ") || ""}</div>
+      </div>
+      <div class="meta">Daily</div>
+    `;
+    el.querySelector("input").addEventListener("change", (e)=>{
+      const checked = e.target.checked;
+      if(checked && !q.done){
+        q.done = true;
+        addXP(q.xp);
+        bumpStats(q.stats);
+        saveState();
+      } else if(!checked && q.done){
+        // optional: allow uncheck without refund (simpler, prevents abuse)
+        q.done = false;
+        saveState();
+      }
+      render();
+    });
+    dailyList.appendChild(el);
+  }
+
+  for(const q of state.quests.weekly){
+    const el = document.createElement("div");
+    el.className = "quest";
+    el.innerHTML = `
+      <input type="checkbox" ${q.done ? "checked":""} aria-label="done">
+      <div>
+        <div>${escapeHtml(q.text)}</div>
+        <div class="tiny">Rewards: +${q.xp} XP • ${q.stats?.join(", ") || ""}</div>
+      </div>
+      <div class="meta">Weekly</div>
+    `;
+    el.querySelector("input").addEventListener("change", (e)=>{
+      const checked = e.target.checked;
+      if(checked && !q.done){
+        q.done = true;
+        addXP(q.xp);
+        bumpStats(q.stats);
+        saveState();
+      } else if(!checked && q.done){
+        q.done = false;
+        saveState();
+      }
+      render();
+    });
+    weeklyList.appendChild(el);
+  }
+}
+
+function renderCheckin(){
+  const wrap = document.getElementById("checkinStats");
+  wrap.innerHTML = "";
+  for(const s of STAT_KEYS){
+    const v = Number(state.current[s.key] ?? 0);
+    const row = document.createElement("div");
+    row.className = "statRow";
+    row.innerHTML = `
+      <label>${s.label}${s.reverse ? " (0=best, 10=worst)" : ""}</label>
+      <input type="range" min="0" max="10" step="1" value="${v}" data-k="${s.key}">
+      <div class="val" id="v_${s.key}">${v}</div>
+    `;
+    const input = row.querySelector("input");
+    input.addEventListener("input", ()=>{
+      document.getElementById("v_"+s.key).textContent = input.value;
+    });
+    wrap.appendChild(row);
+  }
+}
+
+function renderHistory(){
+  const list = document.getElementById("historyList");
+  const h = [...state.history].slice(-14).reverse();
+  list.innerHTML = h.length ? "" : `<div class="tiny">No history yet. Submit a Daily Check-in to start tracking.</div>`;
+  for(const item of h){
+    const el = document.createElement("div");
+    el.className = "quest";
+    el.innerHTML = `
+      <div>
+        <div><b>${item.date}</b></div>
+        <div class="tiny">Power: ${item.power}/100 • Rank: ${item.rank}</div>
+      </div>
+      <div class="meta">Saved</div>
+    `;
+    list.appendChild(el);
+  }
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+}
+
+/** -----------------------------
+ *  ACTIONS
+ * ------------------------------*/
+document.getElementById("btnDailySave").addEventListener("click", ()=>{
+  const t = todayKey();
+  if(state.lastSave === t) return;
+
+  // streak logic
+  const prev = state.lastSave ? new Date(state.lastSave) : null;
+  const now = new Date(t);
+  if(!state.lastSave){
+    state.streak = 1;
+  } else {
+    const diffDays = Math.round((now - prev) / 86400000);
+    state.streak = (diffDays === 1) ? (state.streak + 1) : 1;
+  }
+
+  state.lastSave = t;
+
+  // rewards: base + streak bonus
+  const streakBonus = Math.min(100, state.streak * 5);
+  addXP(50 + streakBonus);
+  // tiny discipline bump for showing up
+  bumpStats(["discipline"]);
+
+  saveState();
+  render();
+});
+
+document.getElementById("btnQuickQuest").addEventListener("click", ()=>{
+  state.quests.dailyDate = ""; // force regen
+  ensureQuests();
+  render();
+});
+
+document.getElementById("btnReroll").addEventListener("click", ()=>{
+  ensureQuests();
+  if(state.rerollsLeft <= 0) return;
+
+  state.rerollsLeft -= 1;
+  state.quests.dailyDate = ""; // force regen today
+  ensureQuests();
+  saveState();
+  render();
+});
+
+document.getElementById("btnSubmitCheckin").addEventListener("click", ()=>{
+  const t = todayKey();
+  if(state.lastCheckin === t){
+    document.getElementById("checkinStatus").textContent = "Already checked in today.";
+    return;
+  }
+  const inputs = document.querySelectorAll("#checkinStats input[type='range']");
+  const snap = {};
+  inputs.forEach(inp => snap[inp.dataset.k] = Number(inp.value));
+
+  // compute before/after power to reward improvement
+  const beforePower = computePower(state.current);
+  state.current = Object.assign(state.current, snap);
+  const afterPower = computePower(state.current);
+
+  // XP reward: base + improvement bonus
+  const improvement = Math.max(0, afterPower - beforePower);
+  addXP(60 + improvement * 3);
+
+  state.lastCheckin = t;
+
+  // push history
+  const rank = powerToRank(afterPower);
+  state.history.push({ date:t, power:afterPower, rank, snapshot: snap });
+
+  saveState();
+  document.getElementById("checkinStatus").textContent = `Check-in saved. +${60 + improvement*3} XP`;
+  render();
+});
+
+document.getElementById("btnAutoFill").addEventListener("click", ()=>{
+  // already uses current values; this just re-renders to match in case
+  render();
+});
+
+document.getElementById("btnSaveSettings").addEventListener("click", ()=>{
+  state.settings.msgMode = document.getElementById("msgMode").value;
+  state.settings.microPerDay = Number(document.getElementById("microPerDay").value);
+  state.settings.weeklyPerWeek = Number(document.getElementById("weeklyPerWeek").value);
+  state.settings.mainQuest.title = document.getElementById("mqInput").value.trim();
+  state.settings.mainQuest.focus = document.getElementById("mqFocus").value;
+
+  // when MQ changes, regenerate quests
+  state.quests.dailyDate = "";
+  state.quests.weeklyWeek = "";
+
+  saveState();
+  render();
+  goView("dashboard");
+});
+
+document.getElementById("btnResetAll").addEventListener("click", ()=>{
+  if(!confirm("Reset EVERYTHING? This will wipe data on this device.")) return;
+  localStorage.removeItem("hunterSystemV2");
+  state = loadState();
+  saveState();
+  render();
+  goView("dashboard");
+});
+
+/** -----------------------------
+ *  TABS / VIEWS
+ * ------------------------------*/
+function goView(name){
+  for(const v of ["dashboard","quests","checkin","history","settings"]){
+    document.getElementById("view-"+v).style.display = (v===name) ? "" : "none";
+  }
+  document.querySelectorAll(".tab").forEach(t => {
+    t.classList.toggle("active", t.dataset.view === name);
+  });
+}
+document.querySelectorAll(".tab").forEach(t=>{
+  t.addEventListener("click", ()=> goView(t.dataset.view));
+});
+
+/** -----------------------------
+ *  BOOT
+ * ------------------------------*/
+ensureQuests();
+render();
+
+// Register service worker safely for GitHub Pages path
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/solo-rpg-app/sw.js");
+  navigator.serviceWorker.register("/solo-rpg-app/sw.js").catch(()=>{});
 }
 </script>
-
 </body>
 </html>
