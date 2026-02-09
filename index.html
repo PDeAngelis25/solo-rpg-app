@@ -1,1 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hunter System</title>
 
+<link rel="manifest" href="manifest.webmanifest">
+
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0b0f14;
+  color: #e5e7eb;
+}
+
+header {
+  padding: 16px;
+  text-align: center;
+  background: linear-gradient(135deg,#111827,#020617);
+  border-bottom: 1px solid #1f2937;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+main {
+  padding: 16px;
+}
+
+.card {
+  background: #020617;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Hunter System</h1>
+  <div id="quote"></div>
+</header>
+
+<main>
+  <div class="card">
+    <h3>Hunter Level</h3>
+    <div id="level">E-Rank</div>
+    <div id="xp">XP: 0</div>
+  </div>
+
+  <div class="card">
+    <h3>Stats</h3>
+    <div class="stat"><span>Strength</span><span id="str">0</span></div>
+    <div class="stat"><span>Discipline</span><span id="disc">0</span></div>
+    <div class="stat"><span>Mindset</span><span id="mind">0</span></div>
+    <div class="stat"><span>Sleep</span><span id="sleep">0</span></div>
+  </div>
+
+  <div class="card">
+    <h3>Daily Save</h3>
+    <button onclick="dailySave()">Save Today</button>
+    <div id="status"></div>
+  </div>
+</main>
+
+<script>
+const state = JSON.parse(localStorage.getItem("hunter")) || {
+  xp: 0,
+  stats: { str:0, disc:0, mind:0, sleep:0 },
+  lastSave: ""
+};
+
+function updateUI(){
+  document.getElementById("xp").innerText = "XP: " + state.xp;
+  document.getElementById("str").innerText = state.stats.str;
+  document.getElementById("disc").innerText = state.stats.disc;
+  document.getElementById("mind").innerText = state.stats.mind;
+  document.getElementById("sleep").innerText = state.stats.sleep;
+
+  let rank = "E-Rank";
+  if(state.xp >= 500) rank="D-Rank";
+  if(state.xp >= 1500) rank="C-Rank";
+  if(state.xp >= 3000) rank="B-Rank";
+  if(state.xp >= 6000) rank="A-Rank";
+  if(state.xp >= 10000) rank="S-Rank";
+
+  document.getElementById("level").innerText = rank;
+}
+
+function dailySave(){
+  const today = new Date().toDateString();
+  if(state.lastSave === today){
+    document.getElementById("status").innerText = "Already saved today.";
+    return;
+  }
+  state.lastSave = today;
+  state.xp += 50;
+  state.stats.disc += 1;
+  localStorage.setItem("hunter", JSON.stringify(state));
+  document.getElementById("status").innerText = "Daily save complete. +50 XP";
+  updateUI();
+}
+
+const quotes = [
+  "Arise.",
+  "Discipline beats motivation.",
+  "You are building something invisible.",
+  "God gives strength to those who walk daily."
+];
+
+document.getElementById("quote").innerText =
+  quotes[Math.floor(Math.random()*quotes.length)];
+
+updateUI();
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/solo-rpg-app/sw.js");
+}
+</script>
+
+</body>
+</html>
