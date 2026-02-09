@@ -1,1 +1,9 @@
-
+{
+  "name": "Hunter System",
+  "short_name": "Hunter",
+  "start_url": "/solo-rpg-app/",
+  "display": "standalone",
+  "background_color": "#0b0f14",
+  "theme_color": "#0b0f14",
+  "icons": []
+}
