@@ -1,212 +1,235 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Hunter System</title>
-<link rel="manifest" href="manifest.webmanifest">
-
+<link rel="manifest" href="manifest.webmanifest"/>
+<meta name="theme-color" content="#070b12"/>
 <style>
-  :root{
-    --bg:#0b0f14;
-    --panel:#020617;
-    --panel2:#071024;
-    --stroke:#1f2937;
-    --text:#e5e7eb;
-    --muted:#9ca3af;
-    --blue:#2563eb;
-    --green:#16a34a;
-    --red:#ef4444;
-    --gold:#f59e0b;
-    --radius:14px;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
-  header{
-    padding:16px 14px 12px;
-    text-align:center;
-    background: radial-gradient(1200px 400px at 50% 0%, #0b1b3a 0%, #020617 55%, #000 100%);
-    border-bottom:1px solid var(--stroke);
-  }
-  header h1{margin:0;font-size:1.35rem;letter-spacing:.5px}
-  header .sub{margin-top:6px;color:var(--muted);font-size:.95rem}
-  main{padding:14px;max-width:920px;margin:0 auto}
-  .grid{display:grid;gap:12px}
-  @media(min-width:900px){ .grid{grid-template-columns:1.2fr .8fr} }
-  .card{
-    background:linear-gradient(180deg,var(--panel),#02040c);
-    border:1px solid var(--stroke);
-    border-radius:var(--radius);
-    padding:14px;
-    box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
-  }
-  .card h2{margin:0 0 10px;font-size:1.05rem}
-  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .pill{
-    border:1px solid var(--stroke);
-    background:rgba(255,255,255,.03);
-    padding:6px 10px;border-radius:999px;
-    color:var(--muted);font-size:.9rem
-  }
-  .big{
-    font-size:1.1rem;font-weight:700
-  }
-  .muted{color:var(--muted)}
-  button{
-    appearance:none;border:none;border-radius:12px;
-    padding:12px 12px;font-weight:700;
-    background:var(--blue);color:white;cursor:pointer;
-  }
-  button:disabled{opacity:.55;cursor:not-allowed}
-  .btn2{background:#111827;border:1px solid var(--stroke);color:var(--text)}
-  .btnDanger{background:#7f1d1d}
-  .btnGood{background:var(--green)}
-  .btnGold{background:var(--gold);color:#111827}
-  .split{display:flex;gap:10px}
-  .split > *{flex:1}
-  input, select, textarea{
-    width:100%;
-    padding:10px 10px;
-    border-radius:12px;
-    border:1px solid var(--stroke);
-    background:#0a1224;color:var(--text);
-    outline:none;
-  }
-  textarea{min-height:70px;resize:vertical}
-  .stats{display:grid;gap:8px}
-  .statRow{
-    display:grid;grid-template-columns:1.2fr 2fr .5fr;
-    gap:10px;align-items:center
-  }
-  .statRow label{color:var(--text)}
-  .statRow .val{justify-self:end;color:var(--muted)}
-  input[type="range"]{width:100%}
-  .bar{
-    height:10px;border-radius:999px;
-    background:rgba(255,255,255,.08);
-    border:1px solid var(--stroke);
-    overflow:hidden;
-  }
-  .bar > div{height:100%;background:linear-gradient(90deg,#2563eb,#22c55e)}
-  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-  .tab{padding:10px 12px;border-radius:999px;border:1px solid var(--stroke);background:rgba(255,255,255,.03);color:var(--text);cursor:pointer}
-  .tab.active{background:rgba(37,99,235,.25);border-color:rgba(37,99,235,.65)}
-  .quest{
-    display:flex;gap:10px;align-items:flex-start;
-    padding:10px;border-radius:12px;border:1px solid var(--stroke);
-    background:rgba(255,255,255,.02);
-    margin-bottom:8px;
-  }
-  .quest input{width:auto}
-  .quest .meta{margin-left:auto;color:var(--muted);font-size:.9rem;white-space:nowrap}
-  .hr{height:1px;background:var(--stroke);margin:12px 0}
-  .tiny{font-size:.85rem;color:var(--muted)}
+:root{
+  --bg:#070b12;--panel:#0b1222;--stroke:#1f2a44;--text:#e6edf7;--muted:#a8b3c7;
+  --blue:#2563eb;--green:#22c55e;--red:#ef4444;--gold:#f59e0b;--purple:#a855f7;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+header{padding:16px 14px 12px;text-align:center;background:radial-gradient(1200px 420px at 50% 0%, #0b2a6b 0%, #081126 55%, #050812 100%);border-bottom:1px solid var(--stroke)}
+header h1{margin:0;font-size:1.35rem;letter-spacing:.6px}
+header .sub{margin-top:6px;color:var(--muted);font-size:.95rem}
+main{padding:14px;max-width:980px;margin:0 auto}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.tab{padding:10px 12px;border-radius:999px;border:1px solid var(--stroke);background:rgba(255,255,255,.03);color:var(--text);cursor:pointer}
+.tab.active{background:rgba(37,99,235,.25);border-color:rgba(37,99,235,.7)}
+.grid{display:grid;gap:12px}
+@media(min-width:900px){ .grid{grid-template-columns:1.15fr .85fr} }
+.card{background:linear-gradient(180deg,var(--panel),#070b16);border:1px solid var(--stroke);border-radius:16px;padding:14px;box-shadow:0 0 0 1px rgba(255,255,255,.02) inset}
+.card h2{margin:0 0 10px;font-size:1.05rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill{border:1px solid var(--stroke);background:rgba(255,255,255,.03);padding:7px 10px;border-radius:999px;color:var(--muted);font-size:.92rem}
+.big{font-size:1.1rem;font-weight:800;color:var(--text)}
+.muted{color:var(--muted)}
+.tiny{font-size:.86rem;color:var(--muted)}
+.hr{height:1px;background:var(--stroke);margin:12px 0}
+button{appearance:none;border:none;border-radius:12px;padding:12px 12px;font-weight:800;background:var(--blue);color:white;cursor:pointer}
+button:disabled{opacity:.55;cursor:not-allowed}
+.btn2{background:#111a31;border:1px solid var(--stroke);color:var(--text)}
+.btnGood{background:var(--green)}
+.btnDanger{background:#7f1d1d}
+.btnGold{background:var(--gold);color:#1a1205}
+.btnPurple{background:var(--purple)}
+input,select{width:100%;padding:10px 10px;border-radius:12px;border:1px solid var(--stroke);background:#071022;color:var(--text);outline:none}
+.bar{height:10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--stroke);overflow:hidden}
+.bar>div{height:100%;background:linear-gradient(90deg,#2563eb,#22c55e)}
+.quest{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:12px;border:1px solid var(--stroke);background:rgba(255,255,255,.02);margin-bottom:8px}
+.quest input{width:auto}
+.quest .meta{margin-left:auto;color:var(--muted);font-size:.9rem;white-space:nowrap}
+.statGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(min-width:900px){ .statGrid{grid-template-columns:1fr 1fr 1fr} }
+.statCard{border:1px solid var(--stroke);background:rgba(255,255,255,.02);border-radius:14px;padding:10px}
+.statTop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.statName{font-weight:800}
+.statVal{color:var(--muted);font-weight:800}
+.shopGrid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:900px){ .shopGrid{grid-template-columns:1fr 1fr} }
+.item{border:1px solid var(--stroke);background:rgba(255,255,255,.02);border-radius:14px;padding:12px}
+.item h3{margin:0 0 6px;font-size:1rem}
+.tag{display:inline-block;border:1px solid var(--stroke);border-radius:999px;padding:4px 8px;font-size:.82rem;color:var(--muted);margin-right:6px}
+.overlay{position:fixed;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.92), rgba(0,0,0,.97));display:flex;align-items:center;justify-content:center;z-index:9999;padding:18px}
+.overlayCard{max-width:720px;width:100%;border:1px solid rgba(255,255,255,.14);background:radial-gradient(1200px 500px at 50% 0%, rgba(37,99,235,.25), rgba(0,0,0,.1));border-radius:22px;padding:18px;text-align:center;box-shadow:0 0 40px rgba(0,0,0,.5)}
+.overlayCard h2{margin:0 0 10px;font-size:1.2rem}
+.quoteText{font-size:1.08rem;line-height:1.5}
+.tapHint{margin-top:14px;color:var(--muted);font-weight:700}
 </style>
 </head>
-
 <body>
+
+<div id="quoteOverlay" class="overlay" style="display:none">
+  <div class="overlayCard">
+    <h2>System Message</h2>
+    <div class="quoteText" id="overlayQuote"></div>
+    <div class="tapHint">Tap anywhere to enter.</div>
+  </div>
+</div>
+
 <header>
   <h1>Hunter System</h1>
-  <div class="sub" id="sysMsg"></div>
+  <div class="sub" id="hdrSub"></div>
 </header>
 
 <main>
   <div class="tabs">
-    <div class="tab active" data-view="dashboard">Dashboard</div>
+    <div class="tab active" data-view="home">Home</div>
     <div class="tab" data-view="quests">Quests</div>
-    <div class="tab" data-view="checkin">Daily Check-in</div>
+    <div class="tab" data-view="gate">Gate</div>
+    <div class="tab" data-view="log">Daily Log</div>
+    <div class="tab" data-view="shop">Shop</div>
     <div class="tab" data-view="history">History</div>
     <div class="tab" data-view="settings">Settings</div>
   </div>
 
-  <div id="view-dashboard">
+  <div id="view-home">
     <div class="grid">
       <div class="card">
-        <h2>Hunter Level</h2>
+        <h2>Character</h2>
         <div class="row">
-          <div class="pill"><span class="muted">Rank</span> <span class="big" id="rank">E</span></div>
-          <div class="pill"><span class="muted">Power</span> <span class="big" id="power">0</span>/100</div>
-          <div class="pill"><span class="muted">XP</span> <span class="big" id="xp">0</span></div>
-          <div class="pill"><span class="muted">Streak</span> <span class="big" id="streak">0</span> days</div>
+          <div class="pill"><span class="muted">Name</span> <span class="big" id="nameOut">-</span></div>
+          <div class="pill"><span class="muted">Age</span> <span class="big" id="ageOut">-</span></div>
+          <div class="pill"><span class="muted">Title</span> <span class="big" id="titleOut">None</span></div>
+          <div class="pill"><span class="muted">Theme</span> <span class="big" id="themeOut">Base</span></div>
+        </div>
+        <div class="hr"></div>
+        <div class="row">
+          <div class="pill"><span class="muted">Rank</span> <span class="big" id="rankOut">E</span></div>
+          <div class="pill"><span class="muted">Power</span> <span class="big" id="powerOut">0</span>/100</div>
+          <div class="pill"><span class="muted">XP</span> <span class="big" id="xpOut">0</span></div>
+          <div class="pill"><span class="muted">Streak</span> <span class="big" id="streakOut">0</span> days</div>
+          <div class="pill"><span class="muted">Gate Clears</span> <span class="big" id="gateClearsOut">0</span></div>
         </div>
         <div style="margin-top:10px">
-          <div class="tiny">Power is your weighted “all-life” score. Rank is based on Power (Solo-style E → S).</div>
+          <div class="tiny">Early ranks climb faster. Higher ranks climb slower + decay faster. Screen Time is reverse-scored.</div>
           <div class="bar" style="margin-top:8px"><div id="powerBar" style="width:0%"></div></div>
         </div>
         <div class="hr"></div>
         <div class="row">
           <button id="btnDailySave" class="btnGood">Daily Save</button>
-          <button id="btnQuickQuest" class="btn2">Generate Today’s Quests</button>
+          <button id="btnGenToday" class="btn2">Generate Today</button>
         </div>
-        <div class="tiny" id="saveStatus" style="margin-top:8px"></div>
+        <div class="tiny" id="saveMsg" style="margin-top:8px"></div>
+        <div class="tiny" id="decayMsg" style="margin-top:6px;color:#ffb4b4"></div>
       </div>
 
       <div class="card">
         <h2>Main Quest</h2>
         <div class="pill" id="mqTitle">None set</div>
-        <div class="tiny" id="mqDetail" style="margin-top:8px"></div>
+        <div class="tiny" id="mqDesc" style="margin-top:8px"></div>
         <div class="hr"></div>
         <div class="row">
           <button class="btn2" onclick="goView('quests')">Open Quests</button>
           <button class="btn2" onclick="goView('settings')">Edit Main Quest</button>
         </div>
+        <div class="hr"></div>
+        <div class="tiny">iPhone note: exact 9am notifications aren’t reliable from a PWA without a server. Quote gate shows once/day on first open.</div>
       </div>
     </div>
 
     <div class="card" style="margin-top:12px">
-      <h2>Character Sheet</h2>
-      <div class="stats" id="statsRead"></div>
-      <div class="tiny" style="margin-top:10px">
-        Tip: Screen Time is reverse-scored (lower is better).
-      </div>
+      <h2>Stats</h2>
+      <div class="statGrid" id="statsGrid"></div>
+      <div class="tiny" style="margin-top:10px">Stats only change from quests + daily log. No self-rating.</div>
     </div>
   </div>
-
   <div id="view-quests" style="display:none">
     <div class="grid">
       <div class="card">
-        <h2>Daily Quests <span class="tiny">(auto-generated)</span></h2>
+        <h2>Daily Quests</h2>
         <div class="row" style="margin-bottom:10px">
-          <button id="btnReroll" class="btnGold">Reroll (1/day)</button>
-          <div class="pill">Rerolls left today: <span class="big" id="rerollsLeft">1</span></div>
+          <button id="btnReroll" class="btnGold">Reroll Daily (1/day)</button>
+          <div class="pill">Rerolls left: <span class="big" id="rerollsOut">1</span></div>
+          <div class="pill">Today: <span class="big" id="todayOut">-</span></div>
         </div>
         <div id="dailyList"></div>
       </div>
 
       <div class="card">
-        <h2>Weekly Quests <span class="tiny">(reset weekly)</span></h2>
+        <h2>Weekly Quests</h2>
+        <div class="tiny">Progress updates automatically from what you actually complete/log.</div>
+        <div class="hr"></div>
         <div id="weeklyList"></div>
-      </div>
-    </div>
-    <div class="card" style="margin-top:12px">
-      <h2>Main Quest Slot (only one)</h2>
-      <div class="tiny">Daily + weekly quests will “lean” toward your Main Quest without feeling like work.</div>
-      <div class="hr"></div>
-      <div class="row">
-        <div class="pill">Current: <span class="big" id="mqTitle2">None</span></div>
+        <div class="hr"></div>
+        <div class="row">
+          <button id="btnClaimWeekly" class="btnPurple">Claim Weekly Rewards</button>
+        </div>
+        <div class="tiny" id="weeklyMsg" style="margin-top:8px"></div>
       </div>
     </div>
   </div>
 
-  <div id="view-checkin" style="display:none">
+  <div id="view-gate" style="display:none">
     <div class="card">
-      <h2>Daily Check-in</h2>
-      <div class="tiny">Rate today (0–10). This affects Power, XP rewards, and long-term progress.</div>
+      <h2>Weekly Gate (Boss Fight)</h2>
+      <div class="tiny">Auto-generated weekly. No time limit — just clear requirements.</div>
       <div class="hr"></div>
-      <div class="stats" id="checkinStats"></div>
+      <div class="row" style="margin-bottom:10px">
+        <div class="pill">Week: <span class="big" id="gateWeekOut">-</span></div>
+        <div class="pill">Boss: <span class="big" id="gateBossOut">-</span></div>
+        <div class="pill">Difficulty: <span class="big" id="gateDiffOut">-</span></div>
+        <div class="pill">Suggested: <span class="big" id="gateSuggestOut">-</span></div>
+      </div>
+      <div id="gateReqs"></div>
       <div class="hr"></div>
       <div class="row">
-        <button id="btnSubmitCheckin" class="btnGood">Submit Check-in</button>
-        <button class="btn2" id="btnAutoFill">Auto-fill from last</button>
+        <button id="btnClaimGate" class="btnPurple">Claim Gate Rewards</button>
       </div>
-      <div class="tiny" id="checkinStatus" style="margin-top:10px"></div>
+      <div class="tiny" id="gateMsg" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <div id="view-log" style="display:none">
+    <div class="card">
+      <h2>Daily Log</h2>
+      <div class="tiny">Optional bonus. Diminishing returns (so 2-hour workouts help, but don’t break rank).</div>
+      <div class="hr"></div>
+      <div class="row">
+        <div class="pill">Today: <span class="big" id="logDayOut">-</span></div>
+        <div class="pill">Logged entries: <span class="big" id="logCountOut">0</span></div>
+      </div>
+      <div class="hr"></div>
+      <div class="grid" style="grid-template-columns:1fr;gap:10px">
+        <div><label class="tiny">Workout (minutes)</label><input id="log_workout" type="number" min="0" placeholder="e.g., 120"/></div>
+        <div><label class="tiny">Reading (minutes)</label><input id="log_read" type="number" min="0" placeholder="e.g., 20"/></div>
+        <div><label class="tiny">Main Quest work (minutes)</label><input id="log_mq" type="number" min="0" placeholder="e.g., 30"/></div>
+        <div><label class="tiny">Study (minutes)</label><input id="log_study" type="number" min="0" placeholder="e.g., 60"/></div>
+        <div><label class="tiny">Pray / Reflect (minutes)</label><input id="log_pray" type="number" min="0" placeholder="e.g., 10"/></div>
+        <div><label class="tiny">Sleep (hours)</label><input id="log_sleep" type="number" min="0" step="0.5" placeholder="e.g., 7.5"/></div>
+        <div><label class="tiny">Comfort Zone (minutes)</label><input id="log_comfort" type="number" min="0" placeholder="e.g., 15"/><div class="tiny">Cold shower, hard convo, new attempt, etc.</div></div>
+      </div>
+      <div class="hr"></div>
+      <div class="row">
+        <button id="btnSaveLog" class="btnGood">Save Log</button>
+        <button id="btnClearLog" class="btn2">Clear Today Log</button>
+      </div>
+      <div class="tiny" id="logMsg" style="margin-top:10px"></div>
+    </div>
+  </div>
+  <div id="view-shop" style="display:none">
+    <div class="card">
+      <h2>XP Shop</h2>
+      <div class="tiny">Cosmetics + light perks. No raw stat cheating.</div>
+      <div class="hr"></div>
+      <div class="row">
+        <div class="pill">XP: <span class="big" id="xpShopOut">0</span></div>
+        <div class="pill">Owned: <span class="big" id="ownedOut">0</span></div>
+      </div>
+      <div class="hr"></div>
+      <div class="shopGrid" id="shopGrid"></div>
     </div>
   </div>
 
   <div id="view-history" style="display:none">
     <div class="card">
       <h2>History</h2>
-      <div class="tiny">Last 14 days (Power + Rank). More coming later.</div>
+      <div class="tiny">Last 21 days.</div>
       <div class="hr"></div>
       <div id="historyList"></div>
     </div>
@@ -215,662 +238,910 @@
   <div id="view-settings" style="display:none">
     <div class="card">
       <h2>Settings</h2>
-      <div class="split">
-        <div>
-          <label class="tiny">System Message Mode</label>
-          <select id="msgMode">
-            <option value="mix">Mix (quote + verse)</option>
-            <option value="quote">Motivational only</option>
-            <option value="verse">Bible verses only</option>
-          </select>
+      <div class="row">
+        <div style="flex:1">
+          <label class="tiny">Name</label>
+          <input id="set_name" placeholder="Your name"/>
         </div>
-        <div>
-          <label class="tiny">Micro Quests per day</label>
-          <select id="microPerDay">
-            <option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option>
-          </select>
-        </div>
-        <div>
-          <label class="tiny">Weekly Quests</label>
-          <select id="weeklyPerWeek">
-            <option>2</option><option selected>3</option><option>4</option><option>5</option>
-          </select>
+        <div style="flex:1">
+          <label class="tiny">Age</label>
+          <input id="set_age" type="number" min="0" placeholder="e.g., 20"/>
         </div>
       </div>
-
       <div class="hr"></div>
-
-      <h2>Main Quest</h2>
-      <div class="tiny">Set to anything: learn Italian, snowboard, get stronger, study more—whatever your current mission is.</div>
-      <div class="hr"></div>
-      <div class="split">
-        <div>
-          <label class="tiny">Main Quest Title</label>
-          <input id="mqInput" placeholder="e.g., Learn Italian / Snowboard / Get Leaner / Study 2 hrs/day" />
-        </div>
-        <div>
-          <label class="tiny">Main Quest Focus</label>
-          <select id="mqFocus">
-            <option value="Balanced" selected>Balanced</option>
-            <option value="Fitness">Fitness</option>
-            <option value="Strength">Strength</option>
-            <option value="Study">Study</option>
-            <option value="Mindset">Mindset</option>
-            <option value="Recovery">Recovery</option>
-            <option value="Skill">Skill</option>
-          </select>
-        </div>
+      <div>
+        <label class="tiny">Main Quest (anything)</label>
+        <input id="set_mqTitle" placeholder="Learn Italian / Snowboard / Anything"/>
       </div>
-
       <div class="row" style="margin-top:10px">
+        <div style="flex:1">
+          <label class="tiny">Main Quest Stat 1</label>
+          <select id="set_mqStat1"></select>
+        </div>
+        <div style="flex:1">
+          <label class="tiny">Stat 2 (optional)</label>
+          <select id="set_mqStat2"></select>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="row">
         <button id="btnSaveSettings" class="btnGood">Save Settings</button>
         <button id="btnResetAll" class="btnDanger">Reset Everything</button>
-      </div>
-
-      <div class="tiny" style="margin-top:10px">
-        Reset wipes local data on this device only.
       </div>
     </div>
   </div>
 </main>
 
 <script>
-/** -----------------------------
- *  DATA MODEL
- * ------------------------------*/
-const STAT_KEYS = [
-  { key:"strength",   label:"Strength",   weight:1.25 },
-  { key:"endurance",  label:"Endurance",  weight:1.15 },
-  { key:"discipline", label:"Discipline", weight:1.30 },
-  { key:"mindset",    label:"Mindset",    weight:1.05 },
-  { key:"sleep",      label:"Sleep",      weight:1.10 },
-  { key:"nutrition",  label:"Nutrition",  weight:1.10 },
-  { key:"study",      label:"Study Time", weight:1.10 },
-  { key:"skill",      label:"Skill",      weight:1.00 },
-  { key:"flexibility",label:"Flexibility",weight:0.85 },
-  // Screen time is reverse-scored (lower is better), so weight is moderate
-  { key:"screen",     label:"Screen Time",weight:0.95, reverse:true },
-];
-
-function todayKey(){
-  const d = new Date();
-  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-}
-function weekKey(){
-  // ISO-ish week id
-  const d = new Date();
-  const tmp = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  const dayNum = tmp.getUTCDay() || 7;
-  tmp.setUTCDate(tmp.getUTCDate() + 4 - dayNum);
-  const yearStart = new Date(Date.UTC(tmp.getUTCFullYear(),0,1));
-  const weekNo = Math.ceil((((tmp - yearStart) / 86400000) + 1) / 7);
-  return tmp.getUTCFullYear()+"-W"+String(weekNo).padStart(2,"0");
-}
-
-const DEFAULT_STATE = {
-  xp: 0,
-  streak: 0,
-  lastSave: "",
-  lastCheckin: "",
-  rerollDate: "",
-  rerollsLeft: 1,
-  settings: {
-    msgMode: "mix",
-    microPerDay: 5,
-    weeklyPerWeek: 3,
-    mainQuest: { title:"", focus:"Balanced" }
-  },
-  // latest daily ratings 0-10
-  current: Object.fromEntries(STAT_KEYS.map(s => [s.key, 0])),
-  // history: {date, power, rank, snapshot}
-  history: [],
-  // quests
-  quests: {
-    dailyDate: "",
-    daily: [],
-    weeklyWeek: "",
-    weekly: []
-  }
+/* ==== GAME DATA ==== */
+const STAT = {
+  strength:{label:"Strength",weight:1.25},
+  endurance:{label:"Endurance",weight:1.15},
+  discipline:{label:"Discipline",weight:1.35},
+  sleep:{label:"Sleep",weight:1.10},
+  nutrition:{label:"Nutrition",weight:1.10},
+  study:{label:"Study",weight:1.10},
+  skill:{label:"Skill",weight:1.05},
+  mindset:{label:"Mindset",weight:1.00},
+  flexibility:{label:"Flexibility",weight:0.85},
+  screen:{label:"Screen Time",weight:0.95,reverse:true}
 };
+const STAT_KEYS = Object.keys(STAT);
 
-function loadState(){
-  try{
-    const raw = localStorage.getItem("hunterSystemV2");
-    if(!raw) return structuredClone(DEFAULT_STATE);
-    const s = JSON.parse(raw);
-
-    // merge with defaults safely
-    const merged = structuredClone(DEFAULT_STATE);
-    Object.assign(merged, s);
-    merged.settings = Object.assign(structuredClone(DEFAULT_STATE.settings), s.settings || {});
-    merged.settings.mainQuest = Object.assign(structuredClone(DEFAULT_STATE.settings.mainQuest), (s.settings||{}).mainQuest || {});
-    merged.current = Object.assign(structuredClone(DEFAULT_STATE.current), s.current || {});
-    merged.quests = Object.assign(structuredClone(DEFAULT_STATE.quests), s.quests || {});
-    merged.history = Array.isArray(s.history) ? s.history : [];
-    return merged;
-  }catch{
-    return structuredClone(DEFAULT_STATE);
-  }
+function pad2(n){return String(n).padStart(2,"0");}
+function todayKey(){const d=new Date();return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;}
+function weekKey(){
+  const d=new Date();
+  const tmp=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
+  const dayNum=tmp.getUTCDay()||7;
+  tmp.setUTCDate(tmp.getUTCDate()+4-dayNum);
+  const yearStart=new Date(Date.UTC(tmp.getUTCFullYear(),0,1));
+  const weekNo=Math.ceil((((tmp-yearStart)/86400000)+1)/7);
+  return `${tmp.getUTCFullYear()}-W${pad2(weekNo)}`;
 }
-function saveState(){
-  localStorage.setItem("hunterSystemV2", JSON.stringify(state));
-}
+function clamp(n,min,max){return Math.max(min,Math.min(max,n));}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[m]));}
+function rid(){return Math.random().toString(16).slice(2)+Date.now().toString(16);}
 
-let state = loadState();
-
-/** -----------------------------
- *  SYSTEM MESSAGE (QUOTE/VERSE)
- * ------------------------------*/
-const QUOTES = [
+const QUOTES=[
   "Discipline beats motivation.",
   "Small wins stack into rank-ups.",
   "You don’t rise to goals—you fall to systems.",
   "Be consistent, not perfect.",
-  "One good day is easy. A streak is power."
+  "One good day is easy. A streak is power.",
+  "You Ain’t Been A Bitch Since ’05. We Ain’t Starting Today."
 ];
-const VERSES = [
+const VERSES=[
   "“Be strong and courageous… for the Lord your God will be with you.” — Joshua 1:9",
   "“I can do all things through Christ who strengthens me.” — Philippians 4:13",
   "“Let us not grow weary in doing good.” — Galatians 6:9",
   "“Commit your work to the Lord, and your plans will be established.” — Proverbs 16:3"
 ];
-function setSystemMessage(){
-  const mode = state.settings.msgMode || "mix";
-  let pool = QUOTES;
-  if(mode === "verse") pool = VERSES;
-  if(mode === "mix") pool = Math.random() < 0.5 ? QUOTES : VERSES;
-  document.getElementById("sysMsg").textContent = pool[Math.floor(Math.random()*pool.length)];
-}
+const SHOP_ITEMS=[
+  {id:"title_consistent",type:"title",name:"The Consistent",cost:800,tag:"Title",desc:"Because you show up.",unlock:"always"},
+  {id:"title_gatebreaker",type:"title",name:"Gatebreaker",cost:1200,tag:"Title",desc:"For clearing Gates.",unlock:"gate_clears_3"},
+  {id:"title_shadow",type:"title",name:"Shadow Adept",cost:2000,tag:"Title",desc:"Shadow energy. Earned.",unlock:"rank_B"},
+  {id:"theme_shadow",type:"theme",name:"Shadow Theme",cost:1500,tag:"Theme",desc:"Darker UI + purple vibe.",unlock:"rank_C"},
+  {id:"theme_ascendant",type:"theme",name:"Ascendant Theme",cost:3000,tag:"Theme",desc:"Elite glow feel.",unlock:"rank_A"},
+  {id:"perk_reroll",type:"perk",name:"+1 Daily Reroll",cost:2200,tag:"Perk",desc:"You get 2 rerolls/day.",unlock:"rank_C"},
+  {id:"perk_gate_bonus",type:"perk",name:"Gate Bonus +10%",cost:2600,tag:"Perk",desc:"More XP from Gate clears.",unlock:"rank_B"},
+  {id:"perk_decay_shield",type:"perk",name:"Decay Shield (1)",cost:1800,tag:"Perk",desc:"Blocks decay once.",unlock:"always"}
+];
 
-/** -----------------------------
- *  POWER + RANK
- * ------------------------------*/
-function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
+const BOSSES={
+  E:["Goblin Chief","Stone Golem","Cave Stalker"],
+  D:["Fanged Warg","Corrupted Knight","Ironback Ogre"],
+  C:["Gatekeeper Hydra","Shadow Marauder","Venom Drake"],
+  B:["Abyss Titan","Blood-Witch General","Storm Chimera"],
+  A:["Eclipse Reaper","Void Dragon","Warlord of Ash"],
+  S:["Monarch’s Emissary","Cataclysm Seraph","The Shadow King’s Trial"]
+};
 
-function computePower(snapshot){
-  // snapshot values are 0-10 ratings; screen time is reverse scored.
-  let wSum = 0, totalW = 0;
-  for(const s of STAT_KEYS){
-    let v = Number(snapshot[s.key] ?? 0);
-    v = clamp(v, 0, 10);
-    if(s.reverse){
-      // reverse: 0=best? we want lower screen time -> higher score.
-      // We'll interpret rating as: 0=none, 10=very high screen time.
-      // Convert to "goodness": 10 - rating
-      v = 10 - v;
-    }
-    wSum += v * s.weight;
-    totalW += 10 * s.weight;
+const DEFAULT={
+  profile:{name:"",age:""},
+  xp:0, streak:0, lastSave:"",
+  quoteSeenDate:"",
+  rerollDate:"", rerollsLeft:1,
+  stats:Object.fromEntries(STAT_KEYS.map(k=>[k,5])),
+  daily:{date:"",quests:[]},
+  logs:{},
+  gate:{week:"",difficulty:"E",boss:"",claimed:false,reqs:[]},
+  history:[],
+  mq:{title:"",stat1:"skill",stat2:"study"},
+  owned:[],
+  equipped:{title:"",theme:"Base"},
+  perks:{rerollPlus:false,gateBonus:false,decayShields:0},
+  weeklyClaim:{week:"",claimed:false}
+};
+
+let state = load();
+function load(){
+  try{
+    const raw = localStorage.getItem("hunterSystemFinal");
+    if(!raw) return structuredClone(DEFAULT);
+    const s=JSON.parse(raw);
+    const m=structuredClone(DEFAULT);
+    Object.assign(m,s);
+    m.profile=Object.assign(structuredClone(DEFAULT.profile),s.profile||{});
+    m.stats=Object.assign(structuredClone(DEFAULT.stats),s.stats||{});
+    m.daily=Object.assign(structuredClone(DEFAULT.daily),s.daily||{});
+    m.logs=(s.logs && typeof s.logs==="object")? s.logs : {};
+    m.gate=Object.assign(structuredClone(DEFAULT.gate),s.gate||{});
+    m.history=Array.isArray(s.history)? s.history : [];
+    m.mq=Object.assign(structuredClone(DEFAULT.mq),s.mq||{});
+    m.owned=Array.isArray(s.owned)? s.owned : [];
+    m.equipped=Object.assign(structuredClone(DEFAULT.equipped),s.equipped||{});
+    m.perks=Object.assign(structuredClone(DEFAULT.perks),s.perks||{});
+    m.weeklyClaim=Object.assign(structuredClone(DEFAULT.weeklyClaim),s.weeklyClaim||{});
+    return m;
+  }catch{
+    return structuredClone(DEFAULT);
   }
-  const pct = totalW ? (wSum / totalW) : 0; // 0..1
-  return Math.round(pct * 100);
 }
-function powerToRank(power){
-  // Solo-ish thresholds; tuneable
-  if(power >= 90) return "S";
-  if(power >= 80) return "A";
-  if(power >= 70) return "B";
-  if(power >= 55) return "C";
-  if(power >= 40) return "D";
+function save(){ localStorage.setItem("hunterSystemFinal", JSON.stringify(state)); }
+
+/* ==== POWER + RANK ==== */
+function power(){
+  let sum=0,wsum=0;
+  for(const k of STAT_KEYS){
+    const info=STAT[k];
+    let v=clamp(Number(state.stats[k]||0),0,100);
+    if(info.reverse) v=100-v;
+    sum += v*info.weight;
+    wsum += 100*info.weight;
+  }
+  return Math.round((sum/wsum)*100);
+}
+function baseRankFromPower(p){
+  // easier early climb, harder late
+  if(p>=93) return "S";
+  if(p>=86) return "A";
+  if(p>=74) return "B";
+  if(p>=58) return "C";
+  if(p>=42) return "D";
   return "E";
 }
-
-/** -----------------------------
- *  QUEST GENERATION
- * ------------------------------*/
-function pickUnique(pool, count){
-  const copy = [...pool];
-  const out = [];
-  while(copy.length && out.length < count){
-    const i = Math.floor(Math.random()*copy.length);
-    out.push(copy.splice(i,1)[0]);
-  }
-  return out;
+function countGateClears(){ return state.history.filter(h=>h.gateClear).length; }
+function finalRank(){
+  const p=power();
+  let r=baseRankFromPower(p);
+  const clears=countGateClears();
+  const streak=state.streak||0;
+  // prevents reaching S too fast: requires consistency + gate clears
+  if(r==="S" && !(streak>=30 && clears>=6)) r="A";
+  if(r==="A" && !(streak>=14 && clears>=3)) r="B";
+  if(r==="B" && !(streak>=7)) r="C";
+  return r;
 }
 
-function dailyTemplates(mainTitle, focus){
-  const t = (s)=> s.replaceAll("{MQ}", mainTitle || "Main Quest");
-  const base = [
-    { text:"10-minute walk (no phone).", xp:25, stats:["endurance","mindset"] },
-    { text:"10 push-ups OR 10 squats (pick one).", xp:25, stats:["strength"] },
-    { text:"Drink water + eat one protein-based meal.", xp:30, stats:["nutrition"] },
-    { text:"Plan tomorrow in 3 bullet points.", xp:25, stats:["discipline","mindset"] },
-    { text:"No screens 30 min before sleep.", xp:30, stats:["sleep","screen"] },
-    { text:"10 minutes focused work/study (timer).", xp:30, stats:["study","discipline"] },
-    { text:"5 minutes mobility/stretching.", xp:20, stats:["flexibility"] },
-    { text:"Learn 1 tiny skill step (practice 10 min).", xp:30, stats:["skill","discipline"] },
-  ].map(q => ({...q, text:t(q.text)}));
+/* ==== RANK-SCALED GROWTH + DECAY ==== */
+function dailyStatCap(){
+  const r=finalRank();
+  // Higher rank = smaller daily gain cap (slower growth)
+  return ({E:4.0,D:3.6,C:3.2,B:2.8,A:2.4,S:2.0}[r]||3.2);
+}
+function decayMultiplier(){
+  const r=finalRank();
+  // Higher rank = faster decline
+  return ({E:0.80,D:0.90,C:1.00,B:1.20,A:1.45,S:1.75}[r]||1.0);
+}
+function ensureGainTracker(){
+  const t=todayKey();
+  if(!state._gains || state._gainsDate!==t){
+    state._gainsDate=t;
+    state._gains=Object.fromEntries(STAT_KEYS.map(k=>[k,0]));
+  }
+}
+function bumpStat(k, amount){
+  ensureGainTracker();
+  if(!(k in state.stats)) return;
+  const used = state._gains[k]||0;
+  const room = Math.max(0, dailyStatCap()-used);
+  const applied = Math.min(room, amount);
+  if(applied<=0) return;
+  state.stats[k]=clamp(state.stats[k]+applied,0,100);
+  state._gains[k]=used+applied;
+}
+function addXP(n){ state.xp += Math.max(0, Math.round(n)); }
 
-  const focusPools = {
-    Fitness: [
-      { text:"15 minutes cardio (easy pace).", xp:40, stats:["endurance"] },
-      { text:"Outdoor sunlight 10 min.", xp:20, stats:["mindset","sleep"] },
-      { text:"Protein goal today (hit it).", xp:35, stats:["nutrition"] },
+function applyDecayIfNeeded(){
+  const t=todayKey();
+  if(!state.lastSave) return;
+  const last=new Date(state.lastSave);
+  const now=new Date(t);
+  const days=Math.floor((now-last)/86400000);
+  if(days<=2) return;
+
+  if(state.perks.decayShields>0){
+    state.perks.decayShields-=1; save(); return;
+  }
+  const extra=days-2;
+  const m = decayMultiplier();
+
+  state.stats.discipline=clamp(state.stats.discipline-(1.2*extra*m),0,100);
+  state.stats.screen=clamp(state.stats.screen+(1.0*extra*m),0,100);
+  for(const k of STAT_KEYS){
+    if(k==="discipline"||k==="screen") continue;
+    state.stats[k]=clamp(state.stats[k]-(0.35*extra*m),0,100);
+  }
+  save();
+}
+
+/* ==== DAILY QUESTS ==== */
+function dailyQuestPools(mqTitle){
+  const mq = mqTitle ? ` (${mqTitle})` : "";
+  return {
+    strength:[
+      {text:"10–15 min strength work (push/pull/squat/core).",stat:"strength",xp:55,delta:1.4},
+      {text:"1 hard set: max clean reps (good form).",stat:"strength",xp:45,delta:1.0},
+      {text:"Stairs or loaded carry 8–12 min.",stat:"strength",xp:55,delta:1.2},
     ],
-    Strength: [
-      { text:"1 main lift OR bodyweight set ladder (10 min).", xp:45, stats:["strength","discipline"] },
-      { text:"Add 1 set to something you already do.", xp:35, stats:["strength"] },
+    endurance:[
+      {text:"10–15 min walk (no phone).",stat:"endurance",xp:45,delta:1.1},
+      {text:"Light cardio 12 min (easy pace).",stat:"endurance",xp:55,delta:1.2},
+      {text:"8 min continuous movement.",stat:"endurance",xp:40,delta:0.9},
     ],
-    Study: [
-      { text:"25-minute study sprint (Pomodoro).", xp:50, stats:["study","discipline"] },
-      { text:"Make 5 flashcards / 5 key points.", xp:35, stats:["study","skill"] },
+    discipline:[
+      {text:"Daily Save + complete 3 quests today.",stat:"discipline",xp:60,delta:1.2},
+      {text:"Hardest task first (10 min).",stat:"discipline",xp:55,delta:1.1},
+      {text:"Plan tomorrow in 3 bullets.",stat:"discipline",xp:45,delta:0.9},
     ],
-    Mindset: [
-      { text:"Journal 5 lines: win, lesson, next step.", xp:35, stats:["mindset","discipline"] },
-      { text:"Do the hardest task first (5–10 min).", xp:40, stats:["discipline","mindset"] },
+    sleep:[
+      {text:"No screens 30 min before bed.",stat:"sleep",xp:55,delta:1.1},
+      {text:"Fixed bedtime (follow it).",stat:"sleep",xp:45,delta:0.9},
+      {text:"Morning light 5–10 min.",stat:"sleep",xp:40,delta:0.8},
     ],
-    Recovery: [
-      { text:"In bed on time (set bedtime).", xp:45, stats:["sleep","discipline"] },
-      { text:"Stretch + breathe 6 minutes.", xp:25, stats:["flexibility","mindset"] },
+    nutrition:[
+      {text:"Protein-based meal + water goal.",stat:"nutrition",xp:55,delta:1.1},
+      {text:"Whole-food meal (real ingredients).",stat:"nutrition",xp:45,delta:0.9},
+      {text:"No junk swap (replace with better option).",stat:"nutrition",xp:45,delta:0.9},
     ],
-    Skill: [
-      { text:"Practice {MQ} for 10 minutes.", xp:45, stats:["skill","discipline"] },
-      { text:"Watch 5 minutes of {MQ} tutorial then do 5 minutes practice.", xp:40, stats:["skill"] },
+    study:[
+      {text:"Focused work block: 25 min timer.",stat:"study",xp:60,delta:1.2},
+      {text:"Write 5 key points / flashcards.",stat:"study",xp:45,delta:0.9},
+      {text:"10 min study/reading (no distractions).",stat:"study",xp:40,delta:0.8},
     ],
-    Balanced: [
-      { text:"Complete any 2 micro quests today.", xp:35, stats:["discipline"] },
-      { text:"Clean your space for 5 minutes.", xp:25, stats:["mindset","discipline"] },
+    skill:[
+      {text:`Main Quest practice 10–20 min${mq}.`,stat:"skill",xp:65,delta:1.3},
+      {text:`Learn 1 micro-step for Main Quest${mq} and do it.`,stat:"skill",xp:55,delta:1.1},
+      {text:`5 min tutorial then 5–10 min practice${mq}.`,stat:"skill",xp:55,delta:1.1},
+    ],
+    mindset:[
+      {text:"Write 6 lines: win/lesson/next step.",stat:"mindset",xp:45,delta:0.9},
+      {text:"5 min breathing or prayer/quiet.",stat:"mindset",xp:40,delta:0.8},
+      {text:"Do 1 uncomfortable thing (small).",stat:"mindset",xp:55,delta:1.1},
+    ],
+    flexibility:[
+      {text:"Mobility/stretching 6–10 min.",stat:"flexibility",xp:35,delta:0.8},
+      {text:"Hip/ankle/shoulder mobility 8 min.",stat:"flexibility",xp:40,delta:0.9},
+      {text:"Stretch + breathe 6 minutes.",stat:"flexibility",xp:35,delta:0.8},
+    ],
+    screen:[
+      {text:"Phone-free meal (no screens).",stat:"screen",xp:45,delta:1.0},
+      {text:"No social apps for 2 hours.",stat:"screen",xp:55,delta:1.2},
+      {text:"Phone away during one task (25 min).",stat:"screen",xp:50,delta:1.1},
     ]
   };
-
-  const focusList = (focusPools[focus] || focusPools.Balanced).map(q => ({...q, text:t(q.text)}));
-  return base.concat(focusList);
 }
+function pick(pool){ return pool[Math.floor(Math.random()*pool.length)]; }
+function makeQuest(q){ return {id:rid(),text:q.text,stat:q.stat,xp:q.xp,delta:q.delta,done:false}; }
 
-function weeklyTemplates(mainTitle, focus){
-  const t = (s)=> s.replaceAll("{MQ}", mainTitle || "Main Quest");
-  const base = [
-    { text:"Hit 4 days of Daily Save + Check-in.", xp:150, stats:["discipline"] },
-    { text:"Average Sleep 7/10 or better (4+ days).", xp:140, stats:["sleep"] },
-    { text:"3 study sessions (25+ min).", xp:160, stats:["study","discipline"] },
-    { text:"2 workouts (any kind).", xp:160, stats:["strength","endurance"] },
-    { text:"Screen-time day under your normal (3+ days).", xp:140, stats:["screen","discipline"] },
-  ].map(q => ({...q, text:t(q.text)}));
+function ensureDaily(){
+  const t=todayKey();
+  if(state.rerollDate!==t){
+    state.rerollDate=t;
+    state.rerollsLeft = 1 + (state.perks.rerollPlus?1:0);
+  }
+  if(state.daily.date===t && state.daily.quests.length) return;
 
-  const focusPools = {
-    Fitness: [
-      { text:"3 cardio sessions (15+ min).", xp:180, stats:["endurance"] },
-      { text:"Meal prep once or plan 3 meals.", xp:160, stats:["nutrition","discipline"] },
-    ],
-    Strength: [
-      { text:"2 strength sessions + track one PR attempt.", xp:200, stats:["strength"] },
-    ],
-    Study: [
-      { text:"5 total study blocks this week.", xp:220, stats:["study","discipline"] },
-    ],
-    Mindset: [
-      { text:"Journal 4 days this week.", xp:170, stats:["mindset"] },
-    ],
-    Recovery: [
-      { text:"No screens 30 min before bed (4 days).", xp:170, stats:["sleep","screen"] },
-    ],
-    Skill: [
-      { text:"Practice {MQ} on 4 separate days.", xp:220, stats:["skill","discipline"] },
-    ],
-    Balanced: [
-      { text:"Complete 70% of daily quests this week.", xp:220, stats:["discipline"] },
-    ]
-  };
-
-  const focusList = (focusPools[focus] || focusPools.Balanced).map(q => ({...q, text:t(q.text)}));
-  return base.concat(focusList);
-}
-
-function ensureQuests(){
-  const t = todayKey();
-  const w = weekKey();
-
-  // reset reroll daily
-  if(state.rerollDate !== t){
-    state.rerollDate = t;
-    state.rerollsLeft = 1;
+  const pools=dailyQuestPools((state.mq.title||"").trim());
+  const rare = Math.random() < 0.18;
+  let doubleStat=null, zeroStat=null;
+  if(rare){
+    doubleStat = STAT_KEYS[Math.floor(Math.random()*STAT_KEYS.length)];
+    do { zeroStat = STAT_KEYS[Math.floor(Math.random()*STAT_KEYS.length)]; } while(zeroStat===doubleStat);
   }
 
-  const mq = state.settings.mainQuest || {title:"", focus:"Balanced"};
-  const mainTitle = (mq.title || "").trim();
-  const focus = mq.focus || "Balanced";
-
-  // daily
-  if(state.quests.dailyDate !== t || !Array.isArray(state.quests.daily) || state.quests.daily.length === 0){
-    const pool = dailyTemplates(mainTitle, focus);
-    const picked = pickUnique(pool, Number(state.settings.microPerDay || 5));
-    state.quests.dailyDate = t;
-    state.quests.daily = picked.map(q => ({...q, done:false, id: cryptoId()}));
+  const quests=[];
+  for(const k of STAT_KEYS){
+    if(rare && k===zeroStat) continue;
+    quests.push(makeQuest(pick(pools[k])));
+    if(rare && k===doubleStat) quests.push(makeQuest(pick(pools[k])));
   }
 
-  // weekly
-  if(state.quests.weeklyWeek !== w || !Array.isArray(state.quests.weekly) || state.quests.weekly.length === 0){
-    const pool = weeklyTemplates(mainTitle, focus);
-    const picked = pickUnique(pool, Number(state.settings.weeklyPerWeek || 3));
-    state.quests.weeklyWeek = w;
-    state.quests.weekly = picked.map(q => ({...q, done:false, id: cryptoId()}));
+  // push main-quest alignment
+  const mq1 = state.mq.stat1 || "skill";
+  const mq2 = state.mq.stat2 || "";
+  if(pools[mq1] && Math.random()<0.55) quests.push(makeQuest(pick(pools[mq1])));
+  if(mq2 && mq2!==mq1 && pools[mq2] && Math.random()<0.35) quests.push(makeQuest(pick(pools[mq2])));
+
+  while(quests.length>12) quests.pop();
+  state.daily={date:t,quests};
+  save();
+}
+function rerollDaily(){
+  ensureDaily();
+  const t=todayKey();
+  if(state.rerollDate!==t || state.rerollsLeft<=0) return;
+  const pools=dailyQuestPools((state.mq.title||"").trim());
+  state.daily.quests = state.daily.quests.map(q => q.done ? q : makeQuest(pick(pools[q.stat])));
+  state.rerollsLeft -= 1;
+  save();
+}
+
+/* ==== HISTORY + SAVE ==== */
+function snapshotHistory({gateClear=false, didSave=false}={}){
+  const t=todayKey();
+  const comp=Object.fromEntries(STAT_KEYS.map(k=>[k,0]));
+  if(state.daily.date===t){
+    for(const q of state.daily.quests) if(q.done) comp[q.stat]+=1;
   }
-
-  saveState();
+  const entry={date:t,power:power(),rank:finalRank(),xp:state.xp,streak:state.streak,gateClear:!!gateClear,didSave:!!didSave,dailyCompletedByStat:comp};
+  const idx=state.history.findIndex(h=>h.date===t);
+  if(idx>=0){
+    entry.gateClear = entry.gateClear || !!state.history[idx].gateClear;
+    entry.didSave = entry.didSave || !!state.history[idx].didSave;
+    state.history[idx]=entry;
+  } else state.history.push(entry);
+  if(state.history.length>21) state.history = state.history.slice(-21);
 }
+function dailySave(){
+  const t=todayKey();
+  if(state.lastSave===t) return;
+  applyDecayIfNeeded();
 
-function cryptoId(){
-  return Math.random().toString(16).slice(2) + Date.now().toString(16);
-}
-
-/** -----------------------------
- *  XP + STATS REWARDS
- * ------------------------------*/
-function addXP(amount){
-  state.xp += Math.max(0, Math.round(amount));
-}
-function bumpStats(keys){
-  for(const k of keys || []){
-    if(!(k in state.current)) continue;
-    state.current[k] = clamp(Number(state.current[k]||0) + 0.2, 0, 10); // tiny permanent bump
+  if(!state.lastSave){ state.streak=1; }
+  else{
+    const prev=new Date(state.lastSave), now=new Date(t);
+    const diff=Math.round((now-prev)/86400000);
+    state.streak = (diff===1) ? (state.streak+1) : 1;
   }
+  state.lastSave=t;
+
+  const streakBonus = Math.min(200, state.streak*6);
+  addXP(80 + streakBonus);
+  bumpStat("discipline", 0.6);
+
+  snapshotHistory({didSave:true});
+  save();
+}
+function toggleQuest(id, done){
+  ensureDaily();
+  const q = state.daily.quests.find(q=>q.id===id);
+  if(!q) return;
+  if(done && !q.done){
+    q.done=true;
+    addXP(q.xp);
+    if(q.stat==="screen"){
+      state.stats.screen = clamp(state.stats.screen - (q.delta*1.4), 0, 100);
+      bumpStat("discipline", 0.25);
+    } else {
+      bumpStat(q.stat, q.delta);
+    }
+  } else if(!done && q.done){
+    q.done=false; // no refunds
+  }
+  snapshotHistory();
+  save();
 }
 
-/** -----------------------------
- *  UI RENDER
- * ------------------------------*/
-function render(){
-  setSystemMessage();
+/* ==== DAILY LOG ==== */
+function getTodayLog(){
+  const t=todayKey();
+  if(!state.logs[t]) state.logs[t]={workout:0,read:0,mq:0,study:0,pray:0,sleep:0,comfort:0};
+  return state.logs[t];
+}
+function clearTodayLog(){
+  state.logs[todayKey()]={workout:0,read:0,mq:0,study:0,pray:0,sleep:0,comfort:0};
+  save();
+}
+function dimReturnMinutes(mins, maxEffect){
+  const m=Math.max(0,Number(mins||0));
+  const x=Math.min(m,180);
+  return maxEffect*(1-Math.exp(-x/40));
+}
+function saveLogFromInputs(){
+  const log=getTodayLog();
+  log.workout=Math.max(0,Number(document.getElementById("log_workout").value||0));
+  log.read=Math.max(0,Number(document.getElementById("log_read").value||0));
+  log.mq=Math.max(0,Number(document.getElementById("log_mq").value||0));
+  log.study=Math.max(0,Number(document.getElementById("log_study").value||0));
+  log.pray=Math.max(0,Number(document.getElementById("log_pray").value||0));
+  log.sleep=Math.max(0,Number(document.getElementById("log_sleep").value||0));
+  log.comfort=Math.max(0,Number(document.getElementById("log_comfort").value||0));
 
-  // compute power + rank from current ratings
-  const power = computePower(state.current);
-  const rank = powerToRank(power);
+  const wEff=dimReturnMinutes(log.workout,1.8);
+  bumpStat("strength",0.7*wEff); bumpStat("endurance",0.7*wEff);
 
-  document.getElementById("power").textContent = power;
-  document.getElementById("rank").textContent = rank;
-  document.getElementById("xp").textContent = state.xp;
-  document.getElementById("streak").textContent = state.streak;
-  document.getElementById("powerBar").style.width = power + "%";
+  const rEff=dimReturnMinutes(log.read,1.2);
+  bumpStat("mindset",0.6*rEff); bumpStat("study",0.5*rEff);
 
-  // main quest labels
-  const mq = state.settings.mainQuest || {title:"", focus:"Balanced"};
-  const title = (mq.title || "").trim();
-  document.getElementById("mqTitle").textContent = title ? title : "None set";
-  document.getElementById("mqTitle2").textContent = title ? title : "None";
-  document.getElementById("mqDetail").textContent = title
-    ? `Focus: ${mq.focus || "Balanced"} • Daily: ${state.settings.microPerDay} • Weekly: ${state.settings.weeklyPerWeek}`
-    : "Set a Main Quest anytime. Quests will adapt.";
+  const mqEff=dimReturnMinutes(log.mq,1.4);
+  bumpStat("skill",0.6*mqEff);
+  if(state.mq.stat1) bumpStat(state.mq.stat1,0.5*mqEff);
+  if(state.mq.stat2 && state.mq.stat2!==state.mq.stat1) bumpStat(state.mq.stat2,0.35*mqEff);
 
-  // stats readout
-  const statsRead = document.getElementById("statsRead");
-  statsRead.innerHTML = "";
-  for(const s of STAT_KEYS){
-    const v = Number(state.current[s.key] ?? 0);
-    const label = s.label + (s.reverse ? " (lower is better)" : "");
-    const row = document.createElement("div");
-    row.className = "statRow";
-    row.innerHTML = `
-      <label>${label}</label>
-      <input type="range" min="0" max="10" step="1" value="${v}" disabled>
-      <div class="val">${v}</div>
+  const sEff=dimReturnMinutes(log.study,1.6);
+  bumpStat("study",0.7*sEff); bumpStat("discipline",0.45*sEff);
+
+  const pEff=dimReturnMinutes(log.pray,0.9);
+  bumpStat("mindset",0.8*pEff);
+
+  const sleepHours=clamp(log.sleep,0,12);
+  const sleepEff=Math.max(0,Math.min(1.8,(sleepHours-6)*0.45));
+  bumpStat("sleep",sleepEff);
+
+  const cEff=dimReturnMinutes(log.comfort,1.3);
+  bumpStat("discipline",0.55*cEff); bumpStat("mindset",0.45*cEff);
+
+  const xpBonus=Math.round(20+(wEff+rEff+mqEff+sEff+pEff+cEff)*20);
+  addXP(xpBonus);
+
+  snapshotHistory();
+  save();
+  return xpBonus;
+}
+
+/* ==== WEEKLY + GATE ==== */
+function weekStartDate(wkey){
+  const [y,w]=wkey.split("-W").map(Number);
+  const simple=new Date(Date.UTC(y,0,1+(w-1)*7));
+  const dow=simple.getUTCDay();
+  const ISO=new Date(simple);
+  if(dow<=4) ISO.setUTCDate(simple.getUTCDate()-(dow||7)+1);
+  else ISO.setUTCDate(simple.getUTCDate()+8-dow);
+  return new Date(ISO.getUTCFullYear(), ISO.getUTCMonth(), ISO.getUTCDate());
+}
+function dateInSameWeek(dateStr,wkey){
+  const d=new Date(dateStr);
+  const ws=weekStartDate(wkey); const we=new Date(ws); we.setDate(ws.getDate()+7);
+  return d>=ws && d<we;
+}
+function weekDailyCountsByStat(wkey){
+  const counts=Object.fromEntries(STAT_KEYS.map(k=>[k,0]));
+  for(const h of state.history){
+    if(!dateInSameWeek(h.date,wkey)) continue;
+    const comp=h.dailyCompletedByStat||{};
+    for(const k of STAT_KEYS) counts[k]+=Number(comp[k]||0);
+  }
+  return counts;
+}
+function weekLogTotals(wkey){
+  const totals={workout:0,read:0,mq:0,study:0,pray:0,sleep:0,comfort:0};
+  for(const [date,log] of Object.entries(state.logs)){
+    if(!dateInSameWeek(date,wkey)) continue;
+    for(const k of Object.keys(totals)) totals[k]+=Number((log||{})[k]||0);
+  }
+  return totals;
+}
+function weeklySaveCount(wkey){
+  let c=0;
+  for(const h of state.history){
+    if(dateInSameWeek(h.date,wkey) && h.didSave) c++;
+  }
+  return c;
+}
+function ensureWeeklyClaim(){
+  const w=weekKey();
+  if(state.weeklyClaim.week!==w){ state.weeklyClaim={week:w,claimed:false}; save(); }
+}
+function buildWeeklyQuests(){
+  ensureWeeklyClaim();
+  const w=weekKey();
+  const counts=weekDailyCountsByStat(w);
+  const logs=weekLogTotals(w);
+  const mq1=state.mq.stat1 || "skill";
+  const mq2=state.mq.stat2 || "";
+  const mqCount=(mq1?counts[mq1]:0)+(mq2 && mq2!==mq1 ? counts[mq2]:0);
+
+  return [
+    {text:"Daily Save: 4 / 4 days", prog:`${Math.min(4,weeklySaveCount(w))} / 4`, done:weeklySaveCount(w)>=4, xp:260},
+    {text:"Strength dailies: 4", prog:`${Math.min(4,counts.strength)} / 4`, done:counts.strength>=4, xp:240},
+    {text:"Study or Skill dailies: 6", prog:`${Math.min(6,counts.study+counts.skill)} / 6`, done:(counts.study+counts.skill)>=6, xp:260},
+    {text:"Screen-control dailies: 3", prog:`${Math.min(3,counts.screen)} / 3`, done:counts.screen>=3, xp:220},
+    {text:"Main Quest-aligned dailies: 4", prog:`${Math.min(4,mqCount)} / 4`, done:mqCount>=4, xp:280},
+    {text:"Workout minutes (log): 180", prog:`${Math.min(180,Math.round(logs.workout))} / 180`, done:logs.workout>=180, xp:260},
+  ];
+}
+function canClaimWeekly(){
+  ensureWeeklyClaim();
+  if(state.weeklyClaim.claimed) return false;
+  const list=buildWeeklyQuests();
+  return list.filter(x=>x.done).length>=4;
+}
+function claimWeekly(){
+  ensureWeeklyClaim();
+  if(!canClaimWeekly()) return {ok:false,msg:"Not ready (need 4 weekly quests done)."};
+  const r=finalRank();
+  const mult=({E:1.0,D:1.1,C:1.25,B:1.45,A:1.7,S:2.0}[r]||1.0);
+  const doneCount=buildWeeklyQuests().filter(x=>x.done).length;
+  const xp=Math.round((400+doneCount*90)*mult);
+  addXP(xp);
+  bumpStat("discipline",1.0*mult);
+  state.weeklyClaim.claimed=true;
+  snapshotHistory();
+  save();
+  return {ok:true,msg:`Weekly rewards claimed: +${xp} XP`};
+}
+
+function gateSuggestedDays(rank){ return ({E:3,D:3,C:5,B:5,A:7,S:7}[rank]||5); }
+function pickBoss(rank){
+  const pool=BOSSES[rank]||BOSSES.E;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+function ensureGate(){
+  const w=weekKey();
+  if(state.gate.week===w && state.gate.reqs.length) return;
+  const r=finalRank();
+  state.gate.week=w;
+  state.gate.difficulty=r;
+  state.gate.boss=pickBoss(r);
+  state.gate.claimed=false;
+
+  const scale=({E:1.0,D:1.1,C:1.25,B:1.45,A:1.7,S:2.0}[r]||1.0);
+  state.gate.reqs = [
+    {type:"daily_total", target:Math.round(18*scale), text:`Complete daily quests: ${Math.round(18*scale)}`},
+    {type:"mq_focus", target:Math.round(5*scale), text:`Main Quest-aligned dailies: ${Math.round(5*scale)}`},
+    {type:"workout_log", target:Math.round(180*scale), text:`Workout minutes (log): ${Math.round(180*scale)}`},
+    {type:"sleep_log", target:Math.round(28*scale), text:`Sleep hours (log): ${Math.round(28*scale)}`},
+  ];
+  if(["B","A","S"].includes(r)){
+    state.gate.reqs.push({type:"screen_dailies", target:Math.round(4*scale), text:`Screen-control dailies: ${Math.round(4*scale)}`});
+  }
+  save();
+}
+function gateProgress(){
+  const w=weekKey();
+  const counts=weekDailyCountsByStat(w);
+  const logs=weekLogTotals(w);
+  let dailyTotal=0; for(const k of STAT_KEYS) dailyTotal+=counts[k];
+  const mq1=state.mq.stat1 || "skill";
+  const mq2=state.mq.stat2 || "";
+  const mqCount=(mq1?counts[mq1]:0)+(mq2 && mq2!==mq1 ? counts[mq2]:0);
+  return {daily_total:dailyTotal, mq_focus:mqCount, workout_log:Math.round(logs.workout), sleep_log:Math.round(logs.sleep), screen_dailies:counts.screen};
+}
+function canClaimGate(){
+  ensureGate();
+  const prog=gateProgress();
+  return state.gate.reqs.every(r => (prog[r.type]||0) >= r.target);
+}
+function claimGate(){
+  ensureGate();
+  if(state.gate.claimed) return {ok:false,msg:"Already claimed."};
+  if(!canClaimGate()) return {ok:false,msg:"Not cleared yet."};
+  const r=state.gate.difficulty;
+  const mult=({E:1.0,D:1.1,C:1.25,B:1.45,A:1.7,S:2.0}[r]||1.0);
+  let xp=Math.round(950*mult);
+  if(state.perks.gateBonus) xp = Math.round(xp*1.10);
+  addXP(xp);
+  bumpStat("discipline",1.2*mult);
+  bumpStat("mindset",0.9*mult);
+  bumpStat("skill",0.7*mult);
+  state.gate.claimed=true;
+  snapshotHistory({gateClear:true});
+  save();
+  return {ok:true,msg:`Gate cleared! +${xp} XP`};
+}
+
+/* ==== SHOP ==== */
+function hasItem(id){ return state.owned.includes(id); }
+function canUnlock(item){
+  const r=finalRank();
+  const clears=countGateClears();
+  if(item.unlock==="always") return true;
+  if(item.unlock==="rank_C") return ["C","B","A","S"].includes(r);
+  if(item.unlock==="rank_B") return ["B","A","S"].includes(r);
+  if(item.unlock==="rank_A") return ["A","S"].includes(r);
+  if(item.unlock==="gate_clears_3") return clears>=3;
+  return true;
+}
+function buy(itemId){
+  const item=SHOP_ITEMS.find(i=>i.id===itemId);
+  if(!item) return {ok:false,msg:"Missing item."};
+  if(hasItem(itemId)) return {ok:false,msg:"Already owned."};
+  if(!canUnlock(item)) return {ok:false,msg:"Locked."};
+  if(state.xp<item.cost) return {ok:false,msg:"Not enough XP."};
+  state.xp-=item.cost;
+  state.owned.push(itemId);
+  if(item.id==="perk_reroll") state.perks.rerollPlus=true;
+  if(item.id==="perk_gate_bonus") state.perks.gateBonus=true;
+  if(item.id==="perk_decay_shield") state.perks.decayShields+=1;
+  if(item.type==="title" && !state.equipped.title) state.equipped.title=item.name;
+  if(item.type==="theme" && state.equipped.theme==="Base") state.equipped.theme=item.name;
+  save();
+  return {ok:true,msg:"Purchased."};
+}
+function equip(itemId){
+  const item=SHOP_ITEMS.find(i=>i.id===itemId);
+  if(!item || !hasItem(itemId)) return;
+  if(item.type==="title") state.equipped.title=item.name;
+  if(item.type==="theme") state.equipped.theme=item.name;
+  save();
+}
+
+/* ==== QUOTE GATE ==== */
+function maybeShowQuoteGate(){
+  const t=todayKey();
+  if(state.quoteSeenDate===t) return;
+  state.quoteSeenDate=t; save();
+  const pool = Math.random()<0.55 ? QUOTES : VERSES;
+  const q = pool[Math.floor(Math.random()*pool.length)];
+  document.getElementById("overlayQuote").textContent=q;
+  const ov=document.getElementById("quoteOverlay");
+  ov.style.display="";
+  ov.addEventListener("click", ()=>{ov.style.display="none";},{once:true});
+}
+
+/* ==== UI ==== */
+function goView(name){
+  for(const v of ["home","quests","gate","log","shop","history","settings"]){
+    document.getElementById("view-"+v).style.display = (v===name) ? "" : "none";
+  }
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active", t.dataset.view===name));
+}
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click", ()=>goView(t.dataset.view)));
+
+function renderHeader(){
+  const title = state.equipped.title ? ` • ${state.equipped.title}` : "";
+  document.getElementById("hdrSub").textContent = `Consistency is power${title}`;
+}
+function renderHome(){
+  document.getElementById("nameOut").textContent = state.profile.name || "-";
+  document.getElementById("ageOut").textContent = state.profile.age || "-";
+  document.getElementById("titleOut").textContent = state.equipped.title || "None";
+  document.getElementById("themeOut").textContent = state.equipped.theme || "Base";
+
+  const p=power(), r=finalRank();
+  document.getElementById("rankOut").textContent=r;
+  document.getElementById("powerOut").textContent=p;
+  document.getElementById("xpOut").textContent=state.xp;
+  document.getElementById("streakOut").textContent=state.streak;
+  document.getElementById("gateClearsOut").textContent=countGateClears();
+  document.getElementById("powerBar").style.width = p+"%";
+
+  const t=todayKey();
+  const canSave = state.lastSave!==t;
+  document.getElementById("btnDailySave").disabled = !canSave;
+  document.getElementById("saveMsg").textContent = canSave ? "Daily Save available (once/day)." : "Saved today.";
+
+  if(state.lastSave){
+    const last=new Date(state.lastSave), now=new Date(t);
+    const days=Math.floor((now-last)/86400000);
+    document.getElementById("decayMsg").textContent =
+      (days===2) ? "Warning: 1 more day inactive triggers decay." :
+      (days>2 ? `Decay triggered. (Higher ranks decay faster.)` : "");
+  } else document.getElementById("decayMsg").textContent="";
+
+  document.getElementById("mqTitle").textContent = (state.mq.title||"").trim() || "None set";
+  const s1=STAT[state.mq.stat1]?.label||"Skill";
+  const s2=state.mq.stat2 ? (STAT[state.mq.stat2]?.label||"") : "";
+  document.getElementById("mqDesc").textContent = `Affects: ${s1}${s2? " + "+s2:""} • Daily/Weekly/Gate lean toward it.`;
+
+  const grid=document.getElementById("statsGrid");
+  grid.innerHTML="";
+  for(const k of STAT_KEYS){
+    const val=Math.round(state.stats[k]||0);
+    const show=(k==="screen")? `${val} (lower better)` : `${val}`;
+    const el=document.createElement("div");
+    el.className="statCard";
+    el.innerHTML=`
+      <div class="statTop"><div class="statName">${STAT[k].label}</div><div class="statVal">${show}</div></div>
+      <div class="bar" style="margin-top:8px"><div style="width:${clamp(val,0,100)}%"></div></div>
     `;
-    statsRead.appendChild(row);
+    grid.appendChild(el);
   }
-
-  // daily save button state
-  const t = todayKey();
-  const canSave = state.lastSave !== t;
-  const btn = document.getElementById("btnDailySave");
-  btn.disabled = !canSave;
-  document.getElementById("saveStatus").textContent = canSave
-    ? "Save available. (Once per day)"
-    : "Saved today. Come back tomorrow for your next daily save.";
-
-  // rerolls
-  document.getElementById("rerollsLeft").textContent = String(state.rerollsLeft);
-
-  // render quests
-  renderQuests();
-
-  // render checkin
-  renderCheckin();
-
-  // history
-  renderHistory();
-
-  // settings inputs
-  document.getElementById("msgMode").value = state.settings.msgMode || "mix";
-  document.getElementById("microPerDay").value = String(state.settings.microPerDay || 5);
-  document.getElementById("weeklyPerWeek").value = String(state.settings.weeklyPerWeek || 3);
-  document.getElementById("mqInput").value = (state.settings.mainQuest?.title || "");
-  document.getElementById("mqFocus").value = (state.settings.mainQuest?.focus || "Balanced");
 }
+function renderDaily(){
+  ensureDaily();
+  document.getElementById("todayOut").textContent=state.daily.date||"-";
+  document.getElementById("rerollsOut").textContent=state.rerollsLeft;
 
-function renderQuests(){
-  ensureQuests();
-  const dailyList = document.getElementById("dailyList");
-  const weeklyList = document.getElementById("weeklyList");
-  dailyList.innerHTML = "";
-  weeklyList.innerHTML = "";
-
-  for(const q of state.quests.daily){
-    const el = document.createElement("div");
-    el.className = "quest";
-    el.innerHTML = `
-      <input type="checkbox" ${q.done ? "checked":""} aria-label="done">
+  const list=document.getElementById("dailyList");
+  list.innerHTML="";
+  for(const q of state.daily.quests){
+    const el=document.createElement("div");
+    el.className="quest";
+    el.innerHTML=`
+      <input type="checkbox" ${q.done?"checked":""} aria-label="done">
       <div>
-        <div>${escapeHtml(q.text)}</div>
-        <div class="tiny">Rewards: +${q.xp} XP • ${q.stats?.join(", ") || ""}</div>
+        <div>${esc(q.text)}</div>
+        <div class="tiny">Stat: ${STAT[q.stat].label} • +${q.xp} XP</div>
       </div>
       <div class="meta">Daily</div>
     `;
-    el.querySelector("input").addEventListener("change", (e)=>{
-      const checked = e.target.checked;
-      if(checked && !q.done){
-        q.done = true;
-        addXP(q.xp);
-        bumpStats(q.stats);
-        saveState();
-      } else if(!checked && q.done){
-        // optional: allow uncheck without refund (simpler, prevents abuse)
-        q.done = false;
-        saveState();
-      }
-      render();
+    el.querySelector("input").addEventListener("change",(e)=>{
+      toggleQuest(q.id,e.target.checked);
+      renderAll();
     });
-    dailyList.appendChild(el);
+    list.appendChild(el);
   }
-
-  for(const q of state.quests.weekly){
-    const el = document.createElement("div");
-    el.className = "quest";
-    el.innerHTML = `
-      <input type="checkbox" ${q.done ? "checked":""} aria-label="done">
+}
+function renderWeekly(){
+  const container=document.getElementById("weeklyList");
+  container.innerHTML="";
+  const list=buildWeeklyQuests();
+  for(const wq of list){
+    const el=document.createElement("div");
+    el.className="quest";
+    el.innerHTML=`
       <div>
-        <div>${escapeHtml(q.text)}</div>
-        <div class="tiny">Rewards: +${q.xp} XP • ${q.stats?.join(", ") || ""}</div>
+        <div><b>${esc(wq.text)}</b></div>
+        <div class="tiny">Progress: ${esc(wq.prog)} • Reward: +${wq.xp} XP</div>
       </div>
-      <div class="meta">Weekly</div>
+      <div class="meta">${wq.done?"Done":"Weekly"}</div>
     `;
-    el.querySelector("input").addEventListener("change", (e)=>{
-      const checked = e.target.checked;
-      if(checked && !q.done){
-        q.done = true;
-        addXP(q.xp);
-        bumpStats(q.stats);
-        saveState();
-      } else if(!checked && q.done){
-        q.done = false;
-        saveState();
-      }
-      render();
-    });
-    weeklyList.appendChild(el);
+    container.appendChild(el);
   }
+  const can=canClaimWeekly();
+  document.getElementById("btnClaimWeekly").disabled = !can || state.weeklyClaim.claimed;
+  document.getElementById("weeklyMsg").textContent = state.weeklyClaim.claimed ? "Weekly rewards claimed." : (can ? "Ready to claim." : "Complete 4 weekly quests to claim.");
 }
+function renderGate(){
+  ensureGate();
+  document.getElementById("gateWeekOut").textContent=state.gate.week||weekKey();
+  document.getElementById("gateBossOut").textContent=state.gate.boss||"-";
+  document.getElementById("gateDiffOut").textContent=state.gate.difficulty||"-";
+  document.getElementById("gateSuggestOut").textContent=`${gateSuggestedDays(state.gate.difficulty)} days`;
 
-function renderCheckin(){
-  const wrap = document.getElementById("checkinStats");
-  wrap.innerHTML = "";
-  for(const s of STAT_KEYS){
-    const v = Number(state.current[s.key] ?? 0);
-    const row = document.createElement("div");
-    row.className = "statRow";
-    row.innerHTML = `
-      <label>${s.label}${s.reverse ? " (0=best, 10=worst)" : ""}</label>
-      <input type="range" min="0" max="10" step="1" value="${v}" data-k="${s.key}">
-      <div class="val" id="v_${s.key}">${v}</div>
-    `;
-    const input = row.querySelector("input");
-    input.addEventListener("input", ()=>{
-      document.getElementById("v_"+s.key).textContent = input.value;
-    });
-    wrap.appendChild(row);
-  }
-}
-
-function renderHistory(){
-  const list = document.getElementById("historyList");
-  const h = [...state.history].slice(-14).reverse();
-  list.innerHTML = h.length ? "" : `<div class="tiny">No history yet. Submit a Daily Check-in to start tracking.</div>`;
-  for(const item of h){
-    const el = document.createElement("div");
-    el.className = "quest";
-    el.innerHTML = `
+  const prog=gateProgress();
+  const reqs=document.getElementById("gateReqs");
+  reqs.innerHTML="";
+  for(const r of state.gate.reqs){
+    const cur=prog[r.type]||0;
+    const done=cur>=r.target;
+    const el=document.createElement("div");
+    el.className="quest";
+    el.innerHTML=`
       <div>
-        <div><b>${item.date}</b></div>
-        <div class="tiny">Power: ${item.power}/100 • Rank: ${item.rank}</div>
+        <div><b>${esc(r.text)}</b></div>
+        <div class="tiny">Progress: ${Math.min(r.target,cur)} / ${r.target}</div>
+      </div>
+      <div class="meta">${done?"Done":"Gate"}</div>
+    `;
+    reqs.appendChild(el);
+  }
+  const can=canClaimGate();
+  document.getElementById("btnClaimGate").disabled = (!can || state.gate.claimed);
+  document.getElementById("gateMsg").textContent = state.gate.claimed ? "Gate cleared. Rewards claimed." : (can ? "Gate cleared. Claim rewards." : "Clear all requirements to defeat the boss.");
+}
+function renderLog(){
+  const t=todayKey();
+  document.getElementById("logDayOut").textContent=t;
+  const log=getTodayLog();
+  document.getElementById("log_workout").value=log.workout||0;
+  document.getElementById("log_read").value=log.read||0;
+  document.getElementById("log_mq").value=log.mq||0;
+  document.getElementById("log_study").value=log.study||0;
+  document.getElementById("log_pray").value=log.pray||0;
+  document.getElementById("log_sleep").value=log.sleep||0;
+  document.getElementById("log_comfort").value=log.comfort||0;
+  const count=["workout","read","mq","study","pray","sleep","comfort"].filter(k=>Number(log[k]||0)>0).length;
+  document.getElementById("logCountOut").textContent=String(count);
+}
+function renderShop(){
+  document.getElementById("xpShopOut").textContent=String(state.xp);
+  document.getElementById("ownedOut").textContent=String(state.owned.length);
+  const grid=document.getElementById("shopGrid");
+  grid.innerHTML="";
+  for(const item of SHOP_ITEMS){
+    const owned=hasItem(item.id);
+    const unlocked=canUnlock(item);
+    const el=document.createElement("div");
+    el.className="item";
+    el.innerHTML=`
+      <h3>${esc(item.name)}</h3>
+      <div class="tiny" style="margin-bottom:8px">${esc(item.desc)}</div>
+      <div style="margin-bottom:10px">
+        <span class="tag">${esc(item.tag)}</span>
+        <span class="tag">Cost: ${item.cost} XP</span>
+        <span class="tag">${unlocked?"Unlocked":"Locked"}</span>
+      </div>
+      <div class="row">
+        <button class="${owned?'btn2':'btnGold'}" ${(!unlocked||owned||state.xp<item.cost)?"disabled":""} data-buy="${item.id}">${owned?"Owned":"Buy"}</button>
+        ${owned && (item.type==="title"||item.type==="theme") ? `<button class="btn2" data-equip="${item.id}">Equip</button>` : ``}
+      </div>
+      <div class="tiny" id="msg_${item.id}" style="margin-top:8px"></div>
+    `;
+    grid.appendChild(el);
+    const buyBtn=el.querySelector(`[data-buy="${item.id}"]`);
+    if(buyBtn) buyBtn.addEventListener("click",()=>{
+      const res=buy(item.id);
+      document.getElementById("msg_"+item.id).textContent=res.msg||"";
+      renderAll();
+    });
+    const eqBtn=el.querySelector(`[data-equip="${item.id}"]`);
+    if(eqBtn) eqBtn.addEventListener("click",()=>{
+      equip(item.id);
+      renderAll();
+    });
+  }
+}
+function renderHistory(){
+  const list=document.getElementById("historyList");
+  const h=[...state.history].reverse();
+  if(!h.length){ list.innerHTML=`<div class="tiny">No history yet. Do a Daily Save + complete quests/logs.</div>`; return; }
+  list.innerHTML="";
+  for(const it of h){
+    const el=document.createElement("div");
+    el.className="quest";
+    el.innerHTML=`
+      <div>
+        <div><b>${it.date}</b> • Rank ${it.rank} • Power ${it.power}/100</div>
+        <div class="tiny">XP: ${it.xp} • Streak: ${it.streak}${it.gateClear?" • Gate Clear ✅":""}</div>
       </div>
       <div class="meta">Saved</div>
     `;
     list.appendChild(el);
   }
 }
+function renderSettings(){
+  document.getElementById("set_name").value=state.profile.name||"";
+  document.getElementById("set_age").value=state.profile.age||"";
+  document.getElementById("set_mqTitle").value=state.mq.title||"";
 
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+  const s1=document.getElementById("set_mqStat1");
+  const s2=document.getElementById("set_mqStat2");
+  s1.innerHTML="";
+  s2.innerHTML=`<option value="">(none)</option>`;
+  for(const k of STAT_KEYS){
+    const o1=document.createElement("option"); o1.value=k; o1.textContent=STAT[k].label; s1.appendChild(o1);
+    const o2=document.createElement("option"); o2.value=k; o2.textContent=STAT[k].label; s2.appendChild(o2);
+  }
+  s1.value=state.mq.stat1||"skill";
+  s2.value=state.mq.stat2||"";
+}
+function renderAll(){
+  renderHeader();
+  renderHome();
+  renderDaily();
+  renderWeekly();
+  renderGate();
+  renderLog();
+  renderShop();
+  renderHistory();
+  renderSettings();
 }
 
-/** -----------------------------
- *  ACTIONS
- * ------------------------------*/
-document.getElementById("btnDailySave").addEventListener("click", ()=>{
-  const t = todayKey();
-  if(state.lastSave === t) return;
-
-  // streak logic
-  const prev = state.lastSave ? new Date(state.lastSave) : null;
-  const now = new Date(t);
-  if(!state.lastSave){
-    state.streak = 1;
-  } else {
-    const diffDays = Math.round((now - prev) / 86400000);
-    state.streak = (diffDays === 1) ? (state.streak + 1) : 1;
-  }
-
-  state.lastSave = t;
-
-  // rewards: base + streak bonus
-  const streakBonus = Math.min(100, state.streak * 5);
-  addXP(50 + streakBonus);
-  // tiny discipline bump for showing up
-  bumpStats(["discipline"]);
-
-  saveState();
-  render();
+/* ==== EVENTS ==== */
+document.getElementById("btnDailySave").addEventListener("click",()=>{ dailySave(); renderAll(); });
+document.getElementById("btnGenToday").addEventListener("click",()=>{ state.daily={date:"",quests:[]}; save(); ensureDaily(); renderAll(); });
+document.getElementById("btnReroll").addEventListener("click",()=>{ rerollDaily(); renderAll(); });
+document.getElementById("btnSaveLog").addEventListener("click",()=>{ const b=saveLogFromInputs(); document.getElementById("logMsg").textContent=`Saved. Bonus +${b} XP (diminishing returns).`; renderAll(); });
+document.getElementById("btnClearLog").addEventListener("click",()=>{ clearTodayLog(); document.getElementById("logMsg").textContent="Cleared today log."; renderAll(); });
+document.getElementById("btnClaimGate").addEventListener("click",()=>{ const res=claimGate(); document.getElementById("gateMsg").textContent=res.msg||""; renderAll(); });
+document.getElementById("btnClaimWeekly").addEventListener("click",()=>{ const res=claimWeekly(); document.getElementById("weeklyMsg").textContent=res.msg||""; renderAll(); });
+document.getElementById("btnSaveSettings").addEventListener("click",()=>{
+  state.profile.name=(document.getElementById("set_name").value||"").trim();
+  state.profile.age=(document.getElementById("set_age").value||"").trim();
+  state.mq.title=(document.getElementById("set_mqTitle").value||"").trim();
+  state.mq.stat1=document.getElementById("set_mqStat1").value||"skill";
+  state.mq.stat2=document.getElementById("set_mqStat2").value||"";
+  state.daily={date:"",quests:[]};
+  state.gate={week:"",difficulty:"E",boss:"",claimed:false,reqs:[]};
+  save();
+  renderAll();
+  goView("home");
+});
+document.getElementById("btnResetAll").addEventListener("click",()=>{
+  if(!confirm("Reset EVERYTHING on this device?")) return;
+  localStorage.removeItem("hunterSystemFinal");
+  state=structuredClone(DEFAULT);
+  save();
+  renderAll();
+  goView("home");
 });
 
-document.getElementById("btnQuickQuest").addEventListener("click", ()=>{
-  state.quests.dailyDate = ""; // force regen
-  ensureQuests();
-  render();
-});
+/* ==== BOOT ==== */
+ensureWeeklyClaim();
+ensureDaily();
+ensureGate();
+applyDecayIfNeeded();
+renderAll();
+maybeShowQuoteGate();
 
-document.getElementById("btnReroll").addEventListener("click", ()=>{
-  ensureQuests();
-  if(state.rerollsLeft <= 0) return;
-
-  state.rerollsLeft -= 1;
-  state.quests.dailyDate = ""; // force regen today
-  ensureQuests();
-  saveState();
-  render();
-});
-
-document.getElementById("btnSubmitCheckin").addEventListener("click", ()=>{
-  const t = todayKey();
-  if(state.lastCheckin === t){
-    document.getElementById("checkinStatus").textContent = "Already checked in today.";
-    return;
-  }
-  const inputs = document.querySelectorAll("#checkinStats input[type='range']");
-  const snap = {};
-  inputs.forEach(inp => snap[inp.dataset.k] = Number(inp.value));
-
-  // compute before/after power to reward improvement
-  const beforePower = computePower(state.current);
-  state.current = Object.assign(state.current, snap);
-  const afterPower = computePower(state.current);
-
-  // XP reward: base + improvement bonus
-  const improvement = Math.max(0, afterPower - beforePower);
-  addXP(60 + improvement * 3);
-
-  state.lastCheckin = t;
-
-  // push history
-  const rank = powerToRank(afterPower);
-  state.history.push({ date:t, power:afterPower, rank, snapshot: snap });
-
-  saveState();
-  document.getElementById("checkinStatus").textContent = `Check-in saved. +${60 + improvement*3} XP`;
-  render();
-});
-
-document.getElementById("btnAutoFill").addEventListener("click", ()=>{
-  // already uses current values; this just re-renders to match in case
-  render();
-});
-
-document.getElementById("btnSaveSettings").addEventListener("click", ()=>{
-  state.settings.msgMode = document.getElementById("msgMode").value;
-  state.settings.microPerDay = Number(document.getElementById("microPerDay").value);
-  state.settings.weeklyPerWeek = Number(document.getElementById("weeklyPerWeek").value);
-  state.settings.mainQuest.title = document.getElementById("mqInput").value.trim();
-  state.settings.mainQuest.focus = document.getElementById("mqFocus").value;
-
-  // when MQ changes, regenerate quests
-  state.quests.dailyDate = "";
-  state.quests.weeklyWeek = "";
-
-  saveState();
-  render();
-  goView("dashboard");
-});
-
-document.getElementById("btnResetAll").addEventListener("click", ()=>{
-  if(!confirm("Reset EVERYTHING? This will wipe data on this device.")) return;
-  localStorage.removeItem("hunterSystemV2");
-  state = loadState();
-  saveState();
-  render();
-  goView("dashboard");
-});
-
-/** -----------------------------
- *  TABS / VIEWS
- * ------------------------------*/
-function goView(name){
-  for(const v of ["dashboard","quests","checkin","history","settings"]){
-    document.getElementById("view-"+v).style.display = (v===name) ? "" : "none";
-  }
-  document.querySelectorAll(".tab").forEach(t => {
-    t.classList.toggle("active", t.dataset.view === name);
-  });
-}
-document.querySelectorAll(".tab").forEach(t=>{
-  t.addEventListener("click", ()=> goView(t.dataset.view));
-});
-
-/** -----------------------------
- *  BOOT
- * ------------------------------*/
-ensureQuests();
-render();
-
-// Register service worker safely for GitHub Pages path
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/solo-rpg-app/sw.js").catch(()=>{});
+/* Relative SW path so GitHub Pages subfolders work */
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("./sw.js").catch(()=>{});
 }
 </script>
 </body>
